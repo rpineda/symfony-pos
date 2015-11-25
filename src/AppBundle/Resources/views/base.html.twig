@@ -1,0 +1,137 @@
+{# base.html.twig #}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>{% block title %} Factura Electronica {% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <META NAME="ROBOTS" CONTENT="INDEX, NOFOLLOW">
+
+        <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+
+
+
+    </head>
+    <body >
+
+        <nav class="navbar navbar-default" id="up">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        
+                    </button>
+                    <a class="navbar-brand" href="#">TITLE</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+                        <li  ><a href="{{ path('category') }}" >category</a> </li>
+                        <li  ><a href="{{ path('product') }}" >product</a> </li>
+                        <li  ><a href="{{ path('client') }}" >Client</a> </li>
+                        <li  ><a href="{{ path('supplier') }}" >Supplier</a> </li>
+                        <li  ><a href="{{ path('sale') }}" >Sale</a> </li>
+                        <li  ><a href="{{ path('purchase') }}" >Purchase</a> </li>
+
+
+
+                        <li  class="dropdown" > 
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Nuevo <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="#">Proveedor</a></li>
+
+                                <li class="divider"></li>
+
+
+                            </ul>
+                        </li>
+
+                        <li class="dropdown"> 
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Listados <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="#">Listados Compras</a></li>
+                                <
+
+
+
+                            </ul>
+                        </li>
+
+                        <li  class="dropdown" > 
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reporte <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="#">Ventas</a></li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right" >
+
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">        USERNAME<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+
+                                <li><a href="#" >Mi Perfil</a></li>
+                                <li><a href="#">Salir</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+
+            </div><!-- /.container-fluid -->
+        </nav>
+
+
+
+
+    <div class="container contenido">
+        <div class="row">
+            {% if app.request.hasPreviousSession %}
+                {% for type, messages in app.session.flashbag.all() %}
+                    {% for message in messages %}
+                        <div class="flash-{{ type }} alert alert-warning" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            {% block titulo %} <h1 ></h1> {% endblock %}
+            {% block subtitulo %}  <h4 > </h4> {% endblock %}
+
+            {% block body %}{% endblock %}
+
+            {% block fos_user_content %} {% endblock fos_user_content %}
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

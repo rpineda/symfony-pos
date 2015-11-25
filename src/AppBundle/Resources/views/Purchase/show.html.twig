@@ -1,0 +1,44 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body -%}
+    <h1>Purchase</h1>
+
+    <table class="record_properties table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ entity.total }}</td>
+            </tr>
+            <tr>
+                <th>Cash</th>
+                <td>{{ entity.cash }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('purchase') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('purchase_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

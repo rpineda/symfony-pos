@@ -1,0 +1,24 @@
+Symfony2 is great: Symfony puede ser bueno
+
+category:
+    labels:
+        name:  Nombre
+        deleted:  Borrado
+product:
+    labels:
+        name:      Nombre
+        price:  Precio
+        cost: Costo
+        qty:  Cantidad
+        category: Categoria
+        deleted:  Borrado
+sale:
+    labels:
+        cash:      Efectivo
+        person: Cliente
+item:
+    labels:
+        qty:      Cantidad
+        price:     Precio
+        cost: Costo
+        product: Producto
