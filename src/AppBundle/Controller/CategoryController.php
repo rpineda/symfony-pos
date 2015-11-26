@@ -220,8 +220,7 @@ class CategoryController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Category entity.');
             }
-
-            $em->remove($entity);
+            $entity->setDeleted(true);
             $em->flush();
         }
 

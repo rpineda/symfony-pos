@@ -221,7 +221,7 @@ class SupplierController extends Controller
                 throw $this->createNotFoundException('Unable to find Supplier entity.');
             }
 
-            $em->remove($entity);
+            $entity->setDeleted(true);
             $em->flush();
         }
 

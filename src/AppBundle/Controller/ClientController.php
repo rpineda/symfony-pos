@@ -221,7 +221,7 @@ class ClientController extends Controller
                 throw $this->createNotFoundException('Unable to find Client entity.');
             }
 
-            $em->remove($entity);
+            $entity->setDeleted(true);
             $em->flush();
         }
 
