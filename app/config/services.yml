@@ -7,3 +7,13 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  my.listener:
+    class: AppBundle\Listener\ItemListener
+    arguments: ['@service_container']
+    tags:
+       - { name: doctrine.event_listener, event: onFlush }
+
+  twig.extension.intl:
+    class: Twig_Extensions_Extension_Intl
+    tags:
+        - { name: twig.extension }
