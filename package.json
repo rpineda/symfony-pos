@@ -1,0 +1,27 @@
+{
+  "name": "punto_venta",
+  "version": "0.0.1",
+  "description": "A point of sale",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-if": "^2.0.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-order": "^1.1.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.4.2",
+    "gulp-util": "^3.0.7",
+    "bower": "^1.6.5"
+  },
+  "keywords": [
+    "pos"
+  ],
+  "author": "Felipe Morales",
+  "license": "MIT"
+}
