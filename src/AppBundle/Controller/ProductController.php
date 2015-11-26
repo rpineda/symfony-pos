@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Product;
 use AppBundle\Form\ProductType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Product controller.
@@ -221,7 +222,7 @@ class ProductController extends Controller
                 throw $this->createNotFoundException('Unable to find Product entity.');
             }
 
-            $em->remove($entity);
+            $entity->setDeleted(true);
             $em->flush();
         }
 
@@ -243,5 +244,23 @@ class ProductController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    /**
+     * Get a Product entity.
+     *
+     * @Route("/api/{id}", name="product_get")
+     * @Method("GET")
+     */
+    public function readAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->find('AppBundle:Product', $id);
+        $serializer = $this->container->get('serializer');
+        $jsonEntity = $serializer->serialize($entity, 'json');
+        $response = new Response();
+        $response->setContent($jsonEntity);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }
