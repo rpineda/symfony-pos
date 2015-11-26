@@ -1,34 +1,34 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block body -%}
-    <h1>Category list</h1>
+    <h1>{{ 'category.labels.self'|trans }}  {{ 'crud.labels.list'|trans }}</h1>
 
     <table class="records_list table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Deleted</th>
-                <th>Actions</th>
+                <th class="row_id">Id</th>
+                <th class="row_name">{{ 'entity.labels.name'|trans }}</th>
+                <th class="row_createdAt">{{ 'entity.labels.createdAt'|trans }}</th>
+                <th class="row_updatedAt">{{ 'entity.labels.updatedAt'|trans }}</th>
+                <th class="row_deleted">{{ 'entity.labels.deleted'|trans }}</th>
+                <th class="row_actions">{{ 'entity.labels.actions'|trans }}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('category_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.deleted }}</td>
-                <td>
+                <td class="row_id"><a href="{{ path('category_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td class="row_name">{{ entity.name }}</td>
+                <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt| localizeddate('short','short')   }}{% endif %}</td>
+                <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt| localizeddate('short','short')   }}{% endif %}</td>
+                <td class="row_deleted">{{entity.deleted  ? 'Si':'No' }}</td>
+                <td class="row_actions">
                 <ul>
                     <li>
-                        <a href="{{ path('category_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('category_show', { 'id': entity.id }) }}">{{ 'crud.labels.show'|trans }}</a>
                     </li>
                     <li>
-                        <a href="{{ path('category_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('category_edit', { 'id': entity.id }) }}">{{ 'crud.labels.edit'|trans }}</a>
                     </li>
                 </ul>
                 </td>
@@ -40,7 +40,7 @@
         <ul>
         <li>
             <a href="{{ path('category_new') }}">
-                Create a new entry
+                {{ 'Create a new entry'|trans }}
             </a>
         </li>
     </ul>

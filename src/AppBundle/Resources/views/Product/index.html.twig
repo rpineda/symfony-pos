@@ -1,40 +1,40 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block body -%}
-    <h1>Product list</h1>
+    <h1>{{ 'product.labels.self' |trans }} {{ 'crud.labels.list' | trans }} </h1>
 
     <table class="records_list table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Cost</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Deleted</th>
-                <th>Qty</th>
-                <th>Actions</th>
+                <th class="row_id">Id</th>
+                <th class="row_name">{{ 'entity.labels.name' | trans }}</th>
+                <th class="row_product_price">{{ 'product.labels.price' | trans }}</th>
+                <th class="row_product_cost">{{ 'product.labels.cost' | trans }}</th>
+                <th class="row_product_qty">{{ 'product.labels.qty' | trans }}</th>
+                <th class="row_createdAt">{{ 'entity.labels.createdAt' | trans }}</th>
+                <th class="row_updatedAt">{{ 'entity.labels.updatedAt' | trans }}</th>
+                <th class="row_deleted">{{ 'entity.labels.deleted' | trans }}</th>
+                <th class="row_actions">{{ 'entity.labels.actions' | trans }}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('product_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.price }}</td>
-                <td>{{ entity.cost }}</td>
-                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.deleted }}</td>
-                <td>{{ entity.qty }}</td>
-                <td>
+                <td class="row_id"><a href="{{ path('product_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td class="row_name">{{ entity.name }}</td>
+                <td class="row_product_price">{{ entity.price | localizedcurrency('ARS')}}</td>
+                <td class="row_product_cost">{{ entity.cost | localizedcurrency('ARS')}}</td>
+                <td class="row_product_qty">{{ entity.qty| round(2, 'floor') | number_format(2, ',', '.') }}</td>
+                <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt|date('Y/m/d H:i') }}{% endif %}</td>
+                <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt|date('Y/m/d H:i') }}{% endif %}</td>
+                <td class="row_deleted">{{entity.deleted  ? 'Si':'No' }}</td>
+                <td class="row_actions">
                 <ul>
                     <li>
-                        <a href="{{ path('product_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('product_show', { 'id': entity.id }) }}">{{ 'crud.labels.show' | trans }}</a>
                     </li>
                     <li>
-                        <a href="{{ path('product_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('product_edit', { 'id': entity.id }) }}">{{ 'crud.labels.edit' | trans }}</a>
                     </li>
                 </ul>
                 </td>
@@ -46,7 +46,7 @@
         <ul>
         <li>
             <a href="{{ path('product_new') }}">
-                Create a new entry
+                {{ 'Create a new entry' | trans }}
             </a>
         </li>
     </ul>

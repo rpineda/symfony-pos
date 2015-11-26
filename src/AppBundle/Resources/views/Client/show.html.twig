@@ -1,7 +1,7 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block body -%}
-    <h1>Client</h1>
+    <h1>{{ 'client.labels.self'|trans }} </h1>
 
     <table class="record_properties table">
         <tbody>
@@ -10,23 +10,23 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>{{ 'entity.labels.name'|trans }}</th>
                 <td>{{ entity.name }}</td>
             </tr>
             <tr>
-                <th>Address</th>
+                <th>{{'person.labels.address'|trans }}</th>
                 <td>{{ entity.address }}</td>
             </tr>
             <tr>
-                <th>Createdat</th>
+                <th>{{ 'entity.labels.createdAt'|trans }}</th>
                 <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Updatedat</th>
+                <th>{{ 'entity.labels.updatedAt'|trans }}</th>
                 <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Deleted</th>
+                <th>{{ 'entity.labels.deleted'|trans }}</th>
                 <td>{{ entity.deleted }}</td>
             </tr>
         </tbody>
@@ -35,12 +35,12 @@
         <ul class="record_actions">
     <li>
         <a href="{{ path('client') }}">
-            Back to the list
+            {{ 'Back to the list'|trans }}
         </a>
     </li>
     <li>
         <a href="{{ path('client_edit', { 'id': entity.id }) }}">
-            Edit
+            {{ 'crud.labels.edit'|trans }}
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>

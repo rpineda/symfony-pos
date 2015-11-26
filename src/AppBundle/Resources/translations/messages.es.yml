@@ -1,24 +1,79 @@
 Symfony2 is great: Symfony puede ser bueno
 
+Back to the list: Volver al listado
+
+Create a new entry: Crear una nueva entrada
+Select the product: Seleccione el producto
+Create: Crear
+Delete: Eliminar
+Update: Actualizar
+
+app:
+    name: POS
+entity:
+    labels:
+        name: Nombre
+        createdAt: Creada
+        updatedAt: Modificada
+        deleted: Eliminada
+        actions: Acciones
+crud:
+    labels:
+        new: Nuevo
+        edit: Editar
+        list:   Listado
+        delete: Borrar
+        show: Ver
 category:
     labels:
+        self: Categoria
         name:  Nombre
         deleted:  Borrado
 product:
     labels:
+        self: Producto
         name:      Nombre
         price:  Precio
         cost: Costo
         qty:  Cantidad
         category: Categoria
         deleted:  Borrado
+
+operation:
+        labels:
+          cash: Efectivo
+          total: Total
 sale:
     labels:
+        self: Venta
         cash:      Efectivo
         person: Cliente
+person:
+  labels:
+    address: Dirección
+
+client:
+    labels:
+        self: Cliente
+supplier:
+    labels:
+        self: Proveedor
+
+
+purchase:
+    labels:
+        self: Compra
+        person: Proveedor
+
 item:
     labels:
+        self:   Item
         qty:      Cantidad
         price:     Precio
         cost: Costo
         product: Producto
+        subtotal: Importe
+fos_user_bundle:
+    labels:
+        See my Profile: Ver mi perfil
+        Log out: Salir

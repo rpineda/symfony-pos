@@ -1,34 +1,34 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block body -%}
-    <h1>Purchase list</h1>
+    <h1>{{ 'purchase.labels.self'|trans }} {{ 'crud.labels.list' | trans }}</h1>
 
     <table class="records_list table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Total</th>
-                <th>Cash</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
+                <th class="row_id">Id</th>
+                <th class="row_operation_total">{{ 'operation.labels.total' | trans }}</th>
+                <th class="row_operation_cash">{{ 'operation.labels.cash' | trans }}</th>
+                <th class="row_createdAt">{{ 'entity.labels.createdAt' | trans }}</th>
+                <th class="row_updatedAt">{{ 'entity.labels.updatedAt' | trans }}</th>
+                <th class="row_actions">{{ 'entity.labels.actions' | trans }}</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('purchase_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.total }}</td>
-                <td>{{ entity.cash }}</td>
-                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
+                <td class="row_id"><a href="{{ path('purchase_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td class="row_operation_total">{{ entity.total | localizedcurrency('ARS')}}</td>
+                <td class="row_operation_cash">{{ entity.cash ? 'Si':'No' }}</td>
+                <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt| localizeddate('short','short')   }}{% endif %}</td>
+                <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt| localizeddate('short','short')   }}{% endif %}</td>
+                <td class="row_actions">
                 <ul>
                     <li>
-                        <a href="{{ path('purchase_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('purchase_show', { 'id': entity.id }) }}">{{ 'crud.labels.show' | trans }}</a>
                     </li>
                     <li>
-                        <a href="{{ path('purchase_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('purchase_edit', { 'id': entity.id }) }}">{{ 'crud.labels.edit' | trans }}</a>
                     </li>
                 </ul>
                 </td>
@@ -40,7 +40,7 @@
         <ul>
         <li>
             <a href="{{ path('purchase_new') }}">
-                Create a new entry
+                {{ 'Create a new entry' | trans }}
             </a>
         </li>
     </ul>

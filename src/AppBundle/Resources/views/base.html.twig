@@ -3,23 +3,25 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>{% block title %} Factura Electronica {% endblock %}</title>
+        <title>{% block title %} Punto de Venta {% endblock %}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <META NAME="ROBOTS" CONTENT="INDEX, NOFOLLOW">
-
+        <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <link href='//fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
 
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}" >
+
 
 
 
     </head>
     <body >
 
-        <nav class="navbar navbar-default" id="up">
+        <nav class="navbar navbar-default">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -30,54 +32,63 @@
                         <span class="icon-bar"></span>
                         
                     </button>
-                    <a class="navbar-brand" href="#">TITLE</a>
+                    <a class="navbar-brand" href="{{ path('sale') }}">{{ 'app.name' | trans }}</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-                        <li  ><a href="{{ path('category') }}" >category</a> </li>
-                        <li  ><a href="{{ path('product') }}" >product</a> </li>
-                        <li  ><a href="{{ path('client') }}" >Client</a> </li>
-                        <li  ><a href="{{ path('supplier') }}" >Supplier</a> </li>
-                        <li  ><a href="{{ path('sale') }}" >Sale</a> </li>
-                        <li  ><a href="{{ path('purchase') }}" >Purchase</a> </li>
-
-
 
                         <li  class="dropdown" > 
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Nuevo <span class="caret"></span></a>
+                            <a href="{{ path('sale') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'sale.labels.self'|trans }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-
-                                <li><a href="#">Proveedor</a></li>
-
-                                <li class="divider"></li>
-
-
+                                <li><a href="{{ path('sale') }}">    {{ 'crud.labels.list'|trans }} </a></li>
+                                <li><a href="{{ path('sale_new') }}">    {{ 'crud.labels.new'|trans }} </a></li>
                             </ul>
                         </li>
 
-                        <li class="dropdown"> 
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Listados <span class="caret"></span></a>
+                        <li  class="dropdown" >
+                            <a href="{{ path('purchase') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'purchase.labels.self'|trans }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-
-                                <li><a href="#">Listados Compras</a></li>
-                                <
-
-
-
+                                <li><a href="{{ path('purchase') }}">    {{ 'crud.labels.list'|trans }} </a></li>
+                                <li><a href="{{ path('purchase_new') }}">    {{ 'crud.labels.new'|trans }} </a></li>
                             </ul>
                         </li>
 
-                        <li  class="dropdown" > 
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reporte <span class="caret"></span></a>
+
+                        <li  class="dropdown" >
+                            <a href="{{ path('product') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'product.labels.self'|trans }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-
-                                <li><a href="#">Ventas</a></li>
-
+                                <li><a href="{{ path('product') }}">    {{ 'crud.labels.list'|trans }} </a></li>
+                                <li><a href="{{ path('product_new') }}">    {{ 'crud.labels.new'|trans }} </a></li>
                             </ul>
                         </li>
+
+                        <li  class="dropdown" >
+                            <a href="{{ path('category') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'category.labels.self'|trans }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ path('category') }}">    {{ 'crud.labels.list'|trans }} </a></li>
+                                <li><a href="{{ path('category_new') }}">    {{ 'crud.labels.new'|trans }} </a></li>
+                            </ul>
+                        </li>
+
+                        <li  class="dropdown" >
+                            <a href="{{ path('client') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'client.labels.self'|trans }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ path('client') }}">    {{ 'crud.labels.list'|trans }} </a></li>
+                                <li><a href="{{ path('client_new') }}">    {{ 'crud.labels.new'|trans }} </a></li>
+                            </ul>
+                        </li>
+
+                        <li  class="dropdown" >
+                            <a href="{{ path('supplier') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'supplier.labels.self'|trans }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ path('supplier') }}">    {{ 'crud.labels.list'|trans }} </a></li>
+                                <li><a href="{{ path('supplier_new') }}">    {{ 'crud.labels.new'|trans }} </a></li>
+                            </ul>
+                        </li>
+
 
                     </ul>
 
@@ -87,8 +98,8 @@
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">        USERNAME<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
 
-                                <li><a href="#" >Mi Perfil</a></li>
-                                <li><a href="#">Salir</a></li>
+                                <li><a href="{{ path('fos_user_profile_show') }}" >{{ 'fos_user_bundle.labels.See my Profile'|trans }}</a></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">{{ 'fos_user_bundle.labels.Log out'|trans }}</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -123,9 +134,7 @@
     </div>
 
 
-
-
-
+        <script src="{{ asset('js/app.js') }}"></script>
 
 
 

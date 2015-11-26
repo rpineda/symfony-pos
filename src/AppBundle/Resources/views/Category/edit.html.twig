@@ -1,14 +1,14 @@
 {% extends 'AppBundle::base.html.twig' %}
 
 {% block body -%}
-    <h1>Category edit</h1>
+    <h1>{{ 'category.labels.self'|trans }}  {{ 'crud.labels.edit'|trans }} </h1>
 
     {{ form(edit_form) }}
 
         <ul class="record_actions">
     <li>
         <a href="{{ path('category') }}">
-            Back to the list
+            {{ 'Back to the list'|trans }}
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>
