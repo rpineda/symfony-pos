@@ -17,11 +17,11 @@ class SaleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('total')
-            ->add('cash', null, ['label' => 'sale.labels.cash'])
+            ->add('total', null, ['label' => 'operation.labels.total' , 'attr'=> array('class'=>'total')])
+            ->add('cash', null, ['label' => 'operation.labels.cash'])
             ->add('person', 'entity', array('class' => 'AppBundle:Person',
                 'property' => 'name',
-                'label' => 'sale.labels.person',
+                'label' => 'client.labels.self',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                         ->select('c')

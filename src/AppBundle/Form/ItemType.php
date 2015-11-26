@@ -18,12 +18,17 @@ class ItemType extends AbstractType
             ->add('product' , 'entity', array(
                 'class' => 'AppBundle\Entity\Product',
                 'property' => 'name',
-                'label' => 'item.labels.product'
+                'label' => 'product.labels.self',
+                'group_by' => 'Category.name' ,
+                'placeholder' => 'Select the product',
+                 'attr'=> array('class'=>'product'),
             ))
 
-            ->add('qty', null, ['label' => 'item.labels.qty'])
-            ->add('price', null, ['label' => 'item.labels.price'])
-            ->add('cost', null, ['label' => 'item.labels.cost'])
+            ->add('qty', null, ['label' => 'product.labels.qty', 'attr'=> array('class'=>'qty')])
+            ->add('price', null, ['label' => 'product.labels.price', 'attr'=> array('class'=>'price') ])
+            ->add('cost', null, ['label' => 'product.labels.cost', 'attr'=> array('class'=>'cost') ])
+            ->add('subtotal', null, ['label' => 'item.labels.subtotal', 'attr'=> array('class'=>'subtotal')])
+
 
         ;
     }

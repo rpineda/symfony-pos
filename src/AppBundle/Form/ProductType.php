@@ -15,15 +15,15 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, ['label' => 'product.labels.name'])
+            ->add('name', null, ['label' => 'entity.labels.name'])
             ->add('category', 'entity', array('class' => 'AppBundle:Category',
                 'property' => 'name',
-                'label' => 'product.labels.category'
+                'label' => 'category.labels.self'
             ))
             ->add('price', null, ['label' => 'product.labels.price'])
             ->add('cost', null, ['label' => 'product.labels.cost'])
             ->add('qty', null, ['label' => 'product.labels.qty'])
-            ->add('deleted', null, ['label' => 'product.labels.deleted'])
+            ->add('deleted', null, ['label' => 'category.labels.deleted'])
 
         ;
     }
