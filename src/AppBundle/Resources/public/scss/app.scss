@@ -1,0 +1,58 @@
+#form_items li{
+  list-style: none;
+
+}
+body{
+  font-family: 'Droid Sans', sans-serif;
+}
+form input, .row_product_cost, .row_product_price, .row_product_qty, .row_id, .row_createdAt, .row_updatedAt{
+  font-family: 'Droid Sans Mono', monospace;
+}
+
+label{
+  text-transform: uppercase;
+}
+
+form{
+  margin: 1em;
+}
+
+.items{
+  padding-left: 0px;
+}
+
+
+.delete_item{
+  text-decoration: none;
+  padding-left: 85%;
+  font-size: 2em;
+  color: #ac2925;
+}
+
+#addItem{
+  font-size: 2em;
+  text-decoration: none;
+  color: #0f0f0f;
+}
+
+.row_updatedAt, .row_createdAt, .row_deleted, .row_address, .row_product_price, .row_product_cost{
+  display: none;
+}
+
+.row_actions ul{
+  list-style: none;
+}
+
+.record_actions{
+  padding-left: 50%;
+}
+
+@media screen and (min-device-width: 768px) and (orientation: landscape){
+  .row_updatedAt, .row_createdAt, .row_deleted, .row_address, .row_price, .row_cost{
+    display: table-cell;
+  }
+  .delete_item{
+    padding-left: 0px;
+  }
+}
+
