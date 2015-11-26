@@ -36,7 +36,7 @@ class Item
     /**
      * @var float
      *
-     * @ORM\Column(name="price", type="float")
+     * @ORM\Column(name="price", type="float", nullable=true)
      */
     private $price;
 
@@ -53,6 +53,13 @@ class Item
      * @ORM\Column(name="qty", type="float")
      */
     private $qty;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="subtotal", type="float")
+     */
+    private $subtotal;
 
 
     /**
@@ -183,5 +190,29 @@ class Item
     public function getOperation()
     {
         return $this->operation;
+    }
+
+    /**
+     * Set subtotal
+     *
+     * @param float $subtotal
+     *
+     * @return Item
+     */
+    public function setSubtotal($subtotal)
+    {
+        $this->subtotal = $subtotal;
+
+        return $this;
+    }
+
+    /**
+     * Get subtotal
+     *
+     * @return float
+     */
+    public function getSubtotal()
+    {
+        return $this->subtotal;
     }
 }
