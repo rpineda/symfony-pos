@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -9,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Sale;
 use AppBundle\Form\SaleType;
+use AppBundle\Form\SearchSaleType;
 
 /**
  * Sale controller.
@@ -25,14 +27,23 @@ class SaleController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('AppBundle:Sale')->findAll();
+        $entity = new Sale();
+        $form = $this->createForm(new SearchSaleType(), $entity);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entities = $em->getRepository('AppBundle:Sale')
+                ->findByDate($form);
+        } else {
+            $entities = $em->getRepository('AppBundle:Sale')->findLastFifteen();
+        }
 
         return array(
             'entities' => $entities,
+             "form" => $form->createView(),
         );
     }
     /**
