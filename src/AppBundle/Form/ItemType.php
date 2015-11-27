@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class ItemType extends AbstractType
 {
@@ -22,6 +23,13 @@ class ItemType extends AbstractType
                 'group_by' => 'Category.name' ,
                 'placeholder' => 'Select the product',
                  'attr'=> array('class'=>'product'),
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('q')
+                        ->select('p')
+                        ->from('AppBundle:Product', 'p')
+                        ->where('p.deleted = false')
+                        ;
+                }
             ))
 
             ->add('qty', null, ['label' => 'product.labels.qty', 'attr'=> array('class'=>'qty')])
