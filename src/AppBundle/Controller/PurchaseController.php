@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\SearchPurchaseType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -25,14 +26,23 @@ class PurchaseController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $entity = new Purchase();
+        $form = $this->createForm(new SearchPurchaseType(), $entity);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $entities = $em->getRepository('AppBundle:Purchase')
+                ->findByDate($form);
+        } else {
+            $entities = $em->getRepository('AppBundle:Purchase')->findLastFifteen();
+        }
 
-        $entities = $em->getRepository('AppBundle:Purchase')->findAll();
 
         return array(
             'entities' => $entities,
+            "form" => $form->createView(),
         );
     }
     /**
