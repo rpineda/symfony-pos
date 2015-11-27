@@ -17,16 +17,8 @@ class SaleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('total', null, ['label' => 'operation.labels.total' , 'attr'=> array('class'=>'total')])
-            ->add('cash', null, ['label' => 'operation.labels.cash'])
-            ->add('person', 'entity', array('class' => 'AppBundle:Person',
-                'property' => 'name',
-                'label' => 'client.labels.self',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('p')
-                        ->select('c')
-                        ->from('AppBundle:Client', 'c');
-                }))
+
+
             ->add('items', 'collection', array(
                 'type' => new ItemType(),
                 'allow_add' => true,
@@ -35,6 +27,19 @@ class SaleType extends AbstractType
                 'by_reference' => false,
                 'required' => true,
             ))
+            ->add('person', 'entity', array('class' => 'AppBundle:Person',
+                'property' => 'name',
+                'label' => 'client.labels.self',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->select('c')
+                        ->from('AppBundle:Client', 'c')
+                        ->where('c.deleted = false')
+                        ;
+                }))
+            ->add('cash', null, ['label' => 'operation.labels.cash'])
+            ->add('total', null, ['label' => 'operation.labels.total' , 'attr'=> array('class'=>'total')])
+
         ;
     }
     
