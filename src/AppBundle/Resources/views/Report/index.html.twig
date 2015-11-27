@@ -1,0 +1,42 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body -%}
+    <h1>{{ 'sale.labels.self'|trans }} {{ 'crud.labels.list' | trans }}</h1>
+    {% if form is defined %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
+    <table class="records_list table">
+        <thead>
+            <tr>
+                <th class="row_">{{ 'product.labels.self' | trans }}</th>
+                <th class="row_">{{ 'report.labels.cost' | trans }}</th>
+                <th class="row_">{{ 'report.labels.income' | trans }}</th>
+                <th class="row_">{{ 'report.labels.profit' | trans }}</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for entity in entities %}
+            <tr>
+
+                <td class="row_">{{ entity.0.product.name }}</td>
+                <td class="row_">{{ entity.cost | localizedcurrency('ARS')}}</td>
+                <td class="row_">{{ entity.income | localizedcurrency('ARS')}}</td>
+                <td class="row_">{{ entity.profit | localizedcurrency('ARS')}}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('sale_new') }}">
+                {{ 'Create a new entry' | trans }}
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
