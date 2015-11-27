@@ -15,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="SaleRepository")
+ *
  */
 class Sale extends Operation
 {
