@@ -38,7 +38,7 @@ gulp.task('sass', function() {
 gulp.task('minifycss', ['sass'], function() {
     gulp.src([
         'src/AppBundle/Resources/public/css/bootstrap.css',
-        'src/AppBundle/Resources/public/css/bootstrap-theme.css',
+        'src/AppBundle/Resources/public/css/bootstrap.cerulean.css',
         'src/AppBundle/Resources/public/css/app.css',
         ])
         .pipe(plumber())
