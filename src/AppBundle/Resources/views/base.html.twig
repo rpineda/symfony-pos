@@ -40,7 +40,7 @@
                     <ul class="nav navbar-nav">
                         <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
 
-                        <li  class="dropdown" > 
+                        <li  class="dropdown" >
                             <a href="{{ path('sale') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ 'sale.labels.self'|trans }} <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ path('sale') }}">    {{ 'crud.labels.list'|trans }} </a></li>
@@ -89,6 +89,11 @@
                             </ul>
                         </li>
 
+                        <li  >
+                            <a href="{{ path('report') }}" aria-expanded="false">{{ 'report.labels.self'|trans }} </a>
+
+                        </li>
+
 
                     </ul>
 
@@ -123,8 +128,6 @@
                 {% endfor %}
             {% endif %}
 
-            {% block titulo %} <h1 ></h1> {% endblock %}
-            {% block subtitulo %}  <h4 > </h4> {% endblock %}
 
             {% block body %}{% endblock %}
 
