@@ -15,179 +15,40 @@ class SaleRepository extends EntityRepository
 {
     public function findLastFifteen()
     {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT s FROM AppBundle:Sale s ORDER BY s.id DESC'
-            )
+        $qb = $this->createQueryBuilder('sale')
+            ->orderBy('sale.id', 'DESC')
             ->setMaxResults(15)
-            ->getResult();
+            ;
+
+        return $qb->getQuery()->execute();
+
     }
 
     public function findByDate($form){
+        $cash = $form->get('cash')->getData();
+        $person = $form->get('person')->getData();
 
+        $qb = $this->createQueryBuilder('sale');
 
-        $cr = $form->get('cash')->getData();
-        $cl = $form->get('person')->getData();
-
-        $creditoLinea = ' ';
-        $clienteLinea = ' ';
-
-        if($cr ){
-            $creditoLinea = ' AND s.cash = :cash  ';
-        }
-        if($cl !== null){
-            $clienteLinea = ' AND s.person = :person ' ;
-        }
-
-        $query = $this->getEntityManager()
-            ->createQuery(
-                'SELECT s'
-                . ' FROM AppBundle:Sale s '
-                . ' WHERE  s.createdAt BETWEEN :initDate and :endDate  '
-                . $creditoLinea
-                . $clienteLinea
-                . ' ORDER BY s.createdAt DESC'
-            );
-
-        $query->setParameter('initDate', $form->get('initDate')->getData());
-        $query->setParameter('endDate', $form->get('endDate')->getData());
-        if($cr ){
-            $query->setParameter('cash', $form->get('cash')->getData());
-        }
-        if($cl !== null) {
-            $query->setParameter('person', $form->get('person')->getData());
-        }
-        return $query->getResult();
-
-    }
-
-    public function dailyReport(){
-
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT p, i, sum(i.price * i.qty) as income,'
-                . ' sum(i.cost * i.qty) as cost, '
-                . ' sum(i.price * i.qty) -sum(i.cost * i.qty) as profit'
-                . ' FROM AppBundle:Item i JOIN i.operation o  '
-                . ' JOIN i.product p'
-                . ' WHERE ( o.createdAt BETWEEN :initDate and :endDate  ) and o INSTANCE OF AppBundle:Sale '
-                . ' group by  p.id '
-
-    )
-            ->setParameter('initDate', new \DateTime(date('Y-m-d')))
-            ->setParameter('endDate', new \DateTime("now"))
-            ->getResult();
-
-    }
-
-    public function getReport($form){
-
-        $agrupar = $form->get('group')->getData();
-        $credito = $form->get('cash')->getData();
-
-        $default = "p.id";
-
-        if ($agrupar == 1) {
-            $default = "p.id";
-        } else if ($agrupar == 2) {
-            $default = "p.category";
-        } elseif ($agrupar == 4) {
-            $default = "o.person";
-        }
-
-
-
-        if ($credito == "true") {
-            $creditoFilter = " AND o.cash = true ";
-        } else {
-            $creditoFilter = " AND o.cash = false ";
-        }
-
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT p, i, sum(i.price * i.qty) as income,'
-                . ' sum(i.cost * i.qty) as cost, '
-                . ' sum(i.price * i.qty) -sum(i.cost * i.qty) as profit'
-                . ' FROM AppBundle:Item i JOIN i.operation o  '
-                . ' JOIN i.product p'
-                . ' WHERE ( o.createdAt BETWEEN :initDate and :endDate  ) and o INSTANCE OF AppBundle:Sale '
-                . $creditoFilter
-                . ' group by  p.id '
-
-            )
+        $qb
+            ->where($qb->expr()->between('sale.createdAt', ':initDate', ':endDate'))
             ->setParameter('initDate', $form->get('initDate')->getData())
-            ->setParameter('endDate', $form->get('endDate')->getData())
+            ->setParameter('endDate', $form->get('endDate')->getData());
 
-            ->getResult();
+        if ($cash != 1) {
+            $qb
+            ->andWhere($qb->expr()->eq('sale.cash', ':cash'))
+                ->setParameter('cash', $cash == 2);
+        }
+        if ($person !== null) {
+            $qb->andWhere($qb->expr()->eq('sale.person', ':person'))
+                ->setParameter('person', $person);
+        }
 
-    }
-
-
-    public function findMostSold(){
-
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT d, sum(d.precio * d.cantidad) as precio,'
-                . ' sum(d.costo * d.cantidad) as costo, '
-                . ' sum(d.precio * d.cantidad) -sum(d.costo * d.cantidad) as ganancia, '
-                . ' sum(d.cantidad)  as cantidad '
-                . ' FROM FelDevCoreBundle:DetalleVenta d JOIN d.venta v  '
-                . ' JOIN d.producto p'
-                . ' WHERE ( v.fecha BETWEEN :fechaInicio and :fechaFin ) '
-                . ' group by p.id ORDER BY cantidad DESC '
-
-            )
-            ->setParameter('fechaInicio', new \DateTime(date('Y-m-d',strtotime("-1 days"))))
-            ->setParameter('fechaFin', new \DateTime("now"))
-            ->setMaxResults(10)
-            ->getResult();
+        return $qb->getQuery()->execute();
 
     }
 
-    public function findHomeStatistics(){
 
-        $array= $this->getEntityManager()
-            ->createQuery(
-                'SELECT count(v.id) as total_ventas,'
-                . ' sum(v.total) as ingresos_ventas '
-                . ' FROM FelDevCoreBundle:Venta v  '
-
-            )
-            ->getResult();
-        $array2= $this->getEntityManager()
-            ->createQuery(
-                'SELECT count(v.id) as total_ventas_hoy,'
-                . ' sum(v.total) as ingresos_ventas_hoy '
-                . ' FROM FelDevCoreBundle:Venta v  '
-                . ' WHERE ( v.fecha BETWEEN :fechaInicio and :fechaFin ) '
-            )
-            ->setParameter('fechaInicio', new \DateTime(date('Y-m-d')))
-            ->setParameter('fechaFin', new \DateTime("now"))
-            ->getResult();
-
-
-        $array3= $this->getEntityManager()
-            ->createQuery(
-                'SELECT  '
-                . ' sum(p.cantidad * p.precio)  as inventario '
-                . ' FROM FelDevCoreBundle:Producto p   '
-            )
-            ->getResult();
-        return array_merge($array,$array2,$array3);
-    }
-
-    public function findMostSoldProducts(){
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT p.nombre, '
-                . ' sum(d.cantidad)  as cantidad '
-                . ' FROM FelDevCoreBundle:DetalleVenta d   '
-                . ' JOIN d.producto p'
-                . ' group by p.id ORDER BY cantidad DESC '
-
-            )
-            ->setMaxResults(5)
-            ->getResult();
-    }
 
 }

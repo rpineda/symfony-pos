@@ -15,48 +15,39 @@ class PurchaseRepository extends EntityRepository
 {
     public function findLastFifteen()
     {
-        return $this->getEntityManager()
-            ->createQuery(
-                'SELECT s FROM AppBundle:Purchase s ORDER BY s.id DESC'
-            )
+        $qb = $this->createQueryBuilder('purchase')
+            ->orderBy('purchase.id', 'DESC')
             ->setMaxResults(15)
-            ->getResult();
+        ;
+
+        return $qb->getQuery()->execute();
     }
 
     public function findByDate($form){
 
+        $cash = $form->get('cash')->getData();
+        $person = $form->get('person')->getData();
 
-        $cr = $form->get('cash')->getData();
-        $cl = $form->get('person')->getData();
+        $qb = $this->createQueryBuilder('purchase');
 
-        $creditoLinea = ' ';
-        $clienteLinea = ' ';
+        $qb
+            ->where($qb->expr()->between('purchase.createdAt', ':initDate', ':endDate'))
+            ->setParameter('initDate', $form->get('initDate')->getData())
+            ->setParameter('endDate', $form->get('endDate')->getData());
 
-            $creditoLinea = ' AND p.cash = :cash  ';
-
-        if($cl !== null){
-            $clienteLinea = ' AND p.person = :person ' ;
+        if ($cash != 1) {
+            $qb
+                ->andWhere($qb->expr()->eq('purchase.cash', ':cash'))
+                ->setParameter('cash', $cash == 2);
+        }
+        if ($person !== null) {
+            $qb->andWhere($qb->expr()->eq('purchase.person', ':person'))
+                ->setParameter('person', $person);
         }
 
-        $query = $this->getEntityManager()
-            ->createQuery(
-                'SELECT p'
-                . ' FROM AppBundle:Purchase p '
-                . ' WHERE  p.createdAt BETWEEN :initDate and :endDate  '
-                . $creditoLinea
-                . $clienteLinea
-                . ' ORDER BY p.createdAt DESC'
-            );
+        return $qb->getQuery()->execute();
 
-        $query->setParameter('initDate', $form->get('initDate')->getData());
-        $query->setParameter('endDate', $form->get('endDate')->getData());
 
-            $query->setParameter('cash', $form->get('cash')->getData());
-
-        if($cl !== null) {
-            $query->setParameter('person', $form->get('person')->getData());
-        }
-        return $query->getResult();
 
     }
 
