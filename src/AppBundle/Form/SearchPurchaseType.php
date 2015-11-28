@@ -56,10 +56,15 @@ class SearchPurchaseType extends AbstractType {
                         ;
                 }))
 
-            ->add('cash', 'checkbox', array(
-                'required' => false,
-                'attr'=> array('mapped' => false, "class" => "credito"),
+            ->add('cash', 'choice', array(
+                'choices' => [1 => 'All', 2 => 'With Cash', 3 => 'Credit'],
+                'expanded' => true,
+                'multiple' => false,
+                'mapped' => false,
+                'data' => 1,
                 'label' => 'operation.labels.cash',
+                'attr'=> array('mapped' => false, "class" => "credit"),
+
             ))
                 ->add('submit', 'submit', array(
                     'attr'=> array( "class"=> "btn btn-default" ),

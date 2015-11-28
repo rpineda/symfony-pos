@@ -44,6 +44,8 @@ class SearchReportType extends AbstractType {
             ->add('person', 'entity', array('class' => 'AppBundle:Person',
                 'property' => 'name',
                 'label' => 'client.labels.self',
+                'required' => false,
+                "placeholder" => "Select a client(Optional)",
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                         ->select('c')
@@ -56,14 +58,22 @@ class SearchReportType extends AbstractType {
                 'choices'  => array('1' => 'product', '2' => 'category', '3' => 'client'),
                 'mapped' => false,
                 'label' => 'search.labels.group',
-
-            ))
-            ->add('cash', 'checkbox', array(
                 'required' => false,
-                'attr'=> array('mapped' => false, "class" => "credito"),
-                'label' => 'operation.labels.cash',
+                "placeholder" => "Select (Optional)",
+
 
             ))
+            ->add('cash', 'choice', array(
+                'choices' => [1 => 'All', 2 => 'With cash', 3 => 'Credit'],
+                'expanded' => true,
+                'multiple' => false,
+                'mapped' => false,
+                'data' => 1,
+                'label' => 'operation.labels.cash',
+                'attr'=> array('mapped' => false, "class" => "credit"),
+
+            ))
+
                 ->add('submit', 'submit', array(
                     'attr'=> array( "class"=> "btn btn-default" ),
                     'label' => 'Search'
