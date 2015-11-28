@@ -35,10 +35,10 @@ class ReportController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entities = $em->getRepository('AppBundle:Sale')
+            $entities = $em->getRepository('AppBundle:Item')
                 ->getReport($form);
         } else {
-            $entities = $em->getRepository('AppBundle:Sale')->dailyReport();
+            $entities = $em->getRepository('AppBundle:Item')->dailyReport();
         }
 
         return array(
