@@ -5,7 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use AppBundle\Form\ItemType;
+use AppBundle\Form\ItemPurchaseType;
 use Doctrine\ORM\EntityRepository;
 
 class PurchaseType extends AbstractType
@@ -19,7 +19,7 @@ class PurchaseType extends AbstractType
         $builder
 
             ->add('items', 'collection', array(
-                'type' => new ItemType(),
+                'type' => new ItemPurchaseType(),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'cascade_validation' => true,
