@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 
-class ItemType extends AbstractType
+class ItemSaleType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -34,7 +34,6 @@ class ItemType extends AbstractType
 
             ->add('qty', null, ['label' => 'product.labels.qty', 'attr'=> array('class'=>'qty')])
             ->add('price', null, ['label' => 'product.labels.price', 'attr'=> array('class'=>'price') ])
-            ->add('cost', null, ['label' => 'product.labels.cost', 'attr'=> array('class'=>'cost') ])
             ->add('subtotal', null, ['label' => 'item.labels.subtotal', 'attr'=> array('class'=>'subtotal')])
 
 
