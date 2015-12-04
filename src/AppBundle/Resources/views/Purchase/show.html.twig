@@ -10,12 +10,20 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
+                <th>{{ 'supplier.labels.self' | trans }}</th>
+                <td>{{ entity.person.name  }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'item.labels.self' | trans }}</th>
+                <td>{{ entity.items.count  }}</td>
+            </tr>
+            <tr>
                 <th>{{ 'operation.labels.total' | trans }}</th>
                 <td>{{ entity.total }}</td>
             </tr>
             <tr>
                 <th>{{ 'operation.labels.cash' | trans }}</th>
-                <td>{{ entity.cash }}</td>
+                <td>{{ entity.cash  ? 'Yes' | trans :'No' | trans  }}</td>
             </tr>
             <tr>
                 <th>{{ 'entity.labels.createdAt' | trans }}</th>
@@ -41,4 +49,32 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+
+            <button class="btn btn-primary" id="editEntity" style="width: 32%"> {{ 'crud.labels.edit' | trans }} </button>
+            <button class="btn btn-default" id="goBack" style="width: 32%"> {{ 'Go back' | trans }}  </button>
+            <a href="#" class="btn btn-warning" data-target="#myModal" data-toggle="modal" id="ask_delete_button" style="width: 32%"> {{ 'Delete' | trans }}  </a>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel">{{ 'Delete the sale?' | trans }}</h3>
+                </div>
+                <div class="modal-body">
+                    {{ 'Click on delete to remove the sale' | trans }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | trans }}</button>
+                    <button type="button" id="deleteOperation" class="btn btn-danger">{{ 'Delete' | trans }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

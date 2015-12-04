@@ -11,12 +11,16 @@
             {{ form_row(formData.qty) }}
         </div>
 
+
         <div class="col-lg-2">
             {{ form_row(formData.cost) }}
         </div>
 
         <div class="col-lg-2">
             {{ form_row(formData.subtotal) }}
+        </div>
+        <div class="col-lg-2 col-xs-12">
+            <a href="#" class="delete_item"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
         </div>
     </div>
 {% endmacro %}
@@ -27,7 +31,9 @@
 
     {{ form_start(form) }}
     <div id="form_items">
-        <ul class="items" data-prototype="{{ _self.tagCollectionItem(form.items.vars.prototype)|e }}">
+
+        <ul class="items" data-prototype="{{ _self.tagCollectionItem(form.items.vars.prototype)|e }}" data-index="{{ form.items.count }}">
+            {{ form_row(form.items) }}
             {% for item in form.items %}
                 {{ _self.tagCollectionItem(item) }}
             {% endfor %}
@@ -63,6 +69,7 @@
     </div>
 
     {{ form_row(form._token) }}
+    {{ form_end(form) }}
 
     <ul class="record_actions">
         <li>
@@ -72,6 +79,13 @@
         </li>
     </ul>
 
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
 
+            <button class="btn btn-primary" id="saveEntity" style="width: 32%"> {{ 'Save' | trans }} </button>
+            <button class="btn btn-default" id="goBack" style="width: 32%"> {{ 'Dismiss' | trans }}  </button>
+
+        </div>
+    </div>
 
 {% endblock %}

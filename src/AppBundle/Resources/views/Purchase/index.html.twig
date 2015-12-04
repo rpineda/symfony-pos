@@ -2,7 +2,11 @@
 
 {% block body -%}
     <h1>{{ 'purchase.labels.self'|trans }} {{ 'crud.labels.list' | trans }}</h1>
-
+    {% if form is defined %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}
     <table class="records_list table">
         <thead>
             <tr>
@@ -19,17 +23,17 @@
             <tr>
                 <td class="row_id"><a href="{{ path('purchase_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td class="row_operation_total">{{ entity.total | localizedcurrency('ARS')}}</td>
-                <td class="row_operation_cash">{{ entity.cash ? 'Si':'No' }}</td>
+                <td class="row_operation_cash">{{ entity.cash ? 'Yes' | trans :'No' | trans  }}</td>
                 <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt| localizeddate('short','short')   }}{% endif %}</td>
                 <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt| localizeddate('short','short')   }}{% endif %}</td>
                 <td class="row_actions">
-                <ul>
+                <ul class="index_actions">
                     <li>
-                        <a href="{{ path('purchase_show', { 'id': entity.id }) }}">{{ 'crud.labels.show' | trans }}</a>
+                        <a  href="{{ path('purchase_show', { 'id': entity.id }) }}">{{ 'crud.labels.show' | trans }}<span class="glyphicon glyphicon-eye-open"></span></a>
+
+
                     </li>
-                    <li>
-                        <a href="{{ path('purchase_edit', { 'id': entity.id }) }}">{{ 'crud.labels.edit' | trans }}</a>
-                    </li>
+
                 </ul>
                 </td>
             </tr>
@@ -37,11 +41,20 @@
         </tbody>
     </table>
 
-        <ul>
+        <ul class="record_actions">
         <li>
             <a href="{{ path('purchase_new') }}">
                 {{ 'Create a new entry' | trans }}
             </a>
         </li>
     </ul>
+
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+
+            <button class="btn btn-success" id="newEntity" style="width: 32%"> <span class="glyphicon glyphicon-plus"></span> {{ 'crud.labels.new' | trans }} </button>
+
+
+        </div>
+    </div>
     {% endblock %}
