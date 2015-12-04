@@ -21,14 +21,12 @@
                 <td class="row_name">{{ entity.name }}</td>
                 <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt| localizeddate('short','short')   }}{% endif %}</td>
                 <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt| localizeddate('short','short')   }}{% endif %}</td>
-                <td class="row_deleted">{{entity.deleted  ? 'Si':'No' }}</td>
+                <td class="row_deleted">{{entity.deleted ? 'Yes' | trans :'No' | trans  }}</td>
                 <td class="row_actions">
-                <ul>
+                <ul class="index_actions">
                     <li>
-                        <a href="{{ path('category_show', { 'id': entity.id }) }}">{{ 'crud.labels.show'|trans }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('category_edit', { 'id': entity.id }) }}">{{ 'crud.labels.edit'|trans }}</a>
+                        <a href="{{ path('category_show', { 'id': entity.id }) }}">{{ 'crud.labels.show'|trans }} <span class="glyphicon glyphicon-eye-open"></span> </a>
+
                     </li>
                 </ul>
                 </td>
@@ -37,11 +35,19 @@
         </tbody>
     </table>
 
-        <ul>
+        <ul class="new_actions">
         <li>
-            <a href="{{ path('category_new') }}">
-                {{ 'Create a new entry'|trans }}
+            <a  href="{{ path('category_new') }}">
+                <span class="glyphicon glyphicon-plus"></span> {{ 'Create a new entry'|trans }}
             </a>
         </li>
     </ul>
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+
+            <button class="btn btn-success" id="newEntity" style="width: 32%"> <span class="glyphicon glyphicon-plus"></span> {{ 'crud.labels.new' | trans }} </button>
+
+
+        </div>
+    </div>
     {% endblock %}
