@@ -47,7 +47,9 @@ class PurchaseType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Purchase'
+            'data_class' => 'AppBundle\Entity\Purchase',
+            'cascade_validation' => true,
+
         ));
     }
 

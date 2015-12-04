@@ -21,6 +21,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class SearchReportType extends AbstractType {
 
+
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
 
@@ -45,7 +46,7 @@ class SearchReportType extends AbstractType {
                 'property' => 'name',
                 'label' => 'client.labels.self',
                 'required' => false,
-                "placeholder" => "Select a client(Optional)",
+                "placeholder" => "Select a client(optional)",
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
                         ->select('c')
@@ -59,7 +60,7 @@ class SearchReportType extends AbstractType {
                 'mapped' => false,
                 'label' => 'search.labels.group',
                 'required' => false,
-                "placeholder" => "Select (Optional)",
+                "placeholder" => "Select (optional)",
 
 
             ))

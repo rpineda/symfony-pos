@@ -55,7 +55,7 @@ class SearchSaleType extends AbstractType {
                 }))
 
             ->add('cash', 'choice', array(
-                'choices' => [1 => 'All', 2 => 'With Cash', 3 => 'Credit'],
+                'choices' => [1 => 'All', 2 => 'With cash', 3 => 'Credit'],
                 'expanded' => true,
                 'multiple' => false,
                 'mapped' => false,
