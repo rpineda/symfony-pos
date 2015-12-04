@@ -9,8 +9,8 @@ function addItem (e){
     var $index = $detalles.data('index') || 0;
     var $detalle = $detalles.attr("data-prototype").replace(/__name__/g, $index );
     var $li = $('<li></li>').append($detalle);
-    var $removeFormA = $('<div class="form-group"><a href="#" class="delete_item"> <span  class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a></div>');
-    $li.children().append($removeFormA);
+    //var $removeFormA = $('<div class="form-group"><a href="#" class="delete_item"> <span  class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a></div>');
+    //$li.children().append($removeFormA);
     $detalles.append( $li);
 
     $detalles.data('index', $index + 1);
@@ -19,6 +19,8 @@ function addItem (e){
 function deleteItem(e){
     e.preventDefault();
     $(this).parent().parent().remove();
+    $(".subtotal").trigger("keyup");
+
 };
 
 function style(){
@@ -37,10 +39,89 @@ jQuery(document).ready(function () {
     $("body").delegate(".delete_item", "click", deleteItem);
     //$("body").delegate("#addItem", "click", style);
 
-    $("#addItem").trigger("click");
+
     var path = window.location.pathname;
 
-    var pos = path.search(/sale\/new/);
+    var pos = path.search(/sale\/new|purchase\/new/);
+    if (pos > 0) {
+        $("#addItem").trigger("click");
+    }
+
+
+
+    $("body").delegate("#goBack", "click", function (e){
+        var path = window.location.pathname;
+        var pos = path.search(/\/new/);
+        var newPath ;
+        if (pos > 0) {
+            newPath = path.replace(/\/new/, '');
+            location.href=newPath;
+            return;
+        }
+        pos = path.search(/\/\d+\/edit/);
+        if (pos > 0) {
+            newPath = path.replace(/\/\d+\/edit/, '');
+            location.href=newPath;
+            return;
+        }
+
+        pos = path.search(/\/edit/);
+        if (pos > 0) {
+            newPath = path.replace(/\/edit/, '');
+            location.href=newPath;
+            return;
+        }
+        pos = path.search(/\/change-password/);
+        if (pos > 0) {
+            newPath = path.replace(/\/change-password/, '');
+            location.href=newPath;
+            return;
+        }
+
+            newPath = path.replace(/\d+$/, '');
+            location.href=newPath;
+            return;
+
+    });
+
+    $("body").delegate("#newEntity", "click", function (e){
+        var path = window.location.pathname;
+        var newPath = path + "new" ;
+        location.href=newPath;
+        return;
+    });
+
+    $("body").delegate("#changePassword", "click", function (e){
+        var path = window.location.pathname;
+        path = path.replace(/\/edit/, '');
+
+        var newPath = path + "/change-password" ;
+        location.href=newPath;
+        return;
+    });
+
+    $("body").delegate("#editEntity", "click", function (e){
+        var path = window.location.pathname;
+        var newPath = path + "/edit" ;
+        location.href=newPath;
+        return;
+    });
+
+
+    $("body").delegate("#saveEntity", "click", function (e){
+        $("button[name='appbundle_category[submit]'], button[name='appbundle_person[submit]'], button[name='appbundle_product[submit]'],  button[name='appbundle_operation[submit]'] ,button[name='appbundle_user[submit]']").click();
+    });
+
+    $("body").delegate("#deleteEntity", "click", function (e){
+        $("button[name='form[submit]']").click();
+    });
+
+    $("body").delegate("#deleteOperation", "click", function (e){
+        $("button[name='form[submit]']").click();
+    });
+
+
+    pos = path.search(/sale\/new|sale\/\d+\/edit/);
     if (pos > 0) {
         $("body").delegate(".qty", "keyup", function (){
             var element = jQuery(this);
@@ -122,7 +203,7 @@ jQuery(document).ready(function () {
 
         });
 
-        $("body").delegate(".qty,.cost,.subtotal", "change", function (e){
+        $("body").delegate(".qty,.cost,.subtotal", "keyup", function (e){
             var sum = 0;
             $(".subtotal").each(function () {
                 if (!isNaN(this.value) && this.value.length !== 0) {
@@ -133,7 +214,7 @@ jQuery(document).ready(function () {
         });
     }
 
-    var pos = path.search(/purchase\/new/);
+    var pos = path.search(/purchase\/new|purchase\/\d+\/edit/);
     if (pos > 0) {
 
         $("body").delegate(".qty", "keyup", function (){
@@ -216,7 +297,7 @@ jQuery(document).ready(function () {
 
         });
 
-        $("body").delegate(".qty,.cost,.subtotal", "change", function (e){
+        $("body").delegate(".qty,.cost,.subtotal", "keyup", function (e){
             var sum = 0;
             $(".subtotal").each(function () {
                 if (!isNaN(this.value) && this.value.length !== 0) {
