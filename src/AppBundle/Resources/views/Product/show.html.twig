@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <th>            {{ 'entity.labels.deleted' | trans }}                </th>
-                <td>{{ entity.deleted }}</td>
+                <td>{{ entity.deleted ? 'Yes' | trans :'No' | trans }}</td>
             </tr>
 
         </tbody>
@@ -55,4 +55,14 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+
+            <button class="btn btn-primary" id="editEntity" style="width: 32%"> {{ 'crud.labels.edit' | trans }} </button>
+            <button class="btn btn-default" id="goBack" style="width: 32%"> {{ 'Go back' | trans }}  </button>
+            <button class="btn btn-danger" id="deleteEntity" style="width: 32%"> {{ 'Delete' | trans }}  </button>
+
+        </div>
+    </div>
 {% endblock %}

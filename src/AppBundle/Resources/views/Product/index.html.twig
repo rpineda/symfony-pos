@@ -27,15 +27,15 @@
                 <td class="row_product_qty">{{ entity.qty| round(2, 'floor') | number_format(2, ',', '.') }}</td>
                 <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt|date('Y/m/d H:i') }}{% endif %}</td>
                 <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt|date('Y/m/d H:i') }}{% endif %}</td>
-                <td class="row_deleted">{{entity.deleted  ? 'Si':'No' }}</td>
+                <td class="row_deleted">{{entity.deleted  ? 'Yes' | trans :'No' | trans  }}</td>
                 <td class="row_actions">
-                <ul>
+                <ul class="index_actions">
                     <li>
-                        <a href="{{ path('product_show', { 'id': entity.id }) }}">{{ 'crud.labels.show' | trans }}</a>
+                        <a  href="{{ path('product_show', { 'id': entity.id }) }}">{{ 'crud.labels.show' | trans }} <span class="glyphicon glyphicon-eye-open"></span></a>
+
+
                     </li>
-                    <li>
-                        <a href="{{ path('product_edit', { 'id': entity.id }) }}">{{ 'crud.labels.edit' | trans }}</a>
-                    </li>
+
                 </ul>
                 </td>
             </tr>
@@ -43,11 +43,20 @@
         </tbody>
     </table>
 
-        <ul>
+        <ul class="record_actions">
         <li>
             <a href="{{ path('product_new') }}">
                 {{ 'Create a new entry' | trans }}
             </a>
         </li>
     </ul>
+
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+
+            <button class="btn btn-success" id="newEntity" style="width: 32%"> <span class="glyphicon glyphicon-plus"></span> {{ 'crud.labels.new' | trans }} </button>
+
+
+        </div>
+    </div>
     {% endblock %}
