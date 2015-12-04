@@ -3,8 +3,12 @@
 
 }
 body{
-  font-family: 'Droid Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
+#bottom_bar{
+  width: 100%;
+}
+
 form input, .row_product_cost, .row_product_price, .row_product_qty, .row_id, .row_createdAt, .row_updatedAt{
   font-family: 'Droid Sans Mono', monospace;
 }
@@ -13,9 +17,6 @@ label{
   text-transform: uppercase;
 }
 
-form{
-  margin: 1em;
-}
 
 .items{
   padding-left: 0px;
@@ -29,6 +30,19 @@ form{
   color: #ac2925;
 }
 
+#appBundle_search_operation .form-group:first-of-type,#appBundle_search_operation .form-group:nth-of-type(2),{
+
+  [id^=appBundle_search_operation_]{
+    width: auto;
+    display: inline;
+  }
+  label{
+    display: block;
+  }
+}
+
+
+
 #addItem{
   font-size: 2em;
   text-decoration: none;
@@ -40,11 +54,18 @@ form{
 }
 
 .row_actions ul{
+  padding-left: 0%;
   list-style: none;
 }
+button[type=submit]{
+  display: none;
+}
+.record_actions, .new_actions{
+  display: none;
+}
 
-.record_actions{
-  padding-left: 50%;
+#appBundle_search_operation_submit{
+display: block;
 }
 
 @media screen and (min-device-width: 768px) and (orientation: landscape){
