@@ -1,0 +1,29 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body -%}
+    <h1>{{ 'product.labels.self' |trans }} {{ 'crud.labels.list' | trans }} </h1>
+
+    <table class="records_list table">
+        <thead>
+            <tr>
+                <th class="row_name">{{ 'entity.labels.name' | trans }}</th>
+                <th >{{ 'product.labels.price' | trans }}</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td class="row_name">{{ entity.name }}</td>
+                <td >{{ entity.price | localizedcurrency('ARS')}}</td>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+    {% endblock %}

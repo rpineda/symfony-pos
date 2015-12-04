@@ -36,6 +36,24 @@ class ProductController extends Controller
             'entities' => $entities,
         );
     }
+
+    /**
+     * Lists all Product price entities.
+     *
+     * @Route("/price", name="product_price")
+     * @Method("GET")
+     * @Template()
+     */
+    public function priceAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Product')->findAll();
+
+        return array(
+            'entities' => $entities,
+        );
+    }
     /**
      * Creates a new Product entity.
      *
@@ -263,4 +281,6 @@ class ProductController extends Controller
 
         return $response;
     }
+
+
 }
