@@ -100,7 +100,7 @@
                     <ul class="nav navbar-nav navbar-right" >
 
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">        USERNAME<span class="caret"></span></a>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ app.user.username }}<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
 
                                 <li><a href="{{ path('fos_user_profile_show') }}" >{{ 'fos_user_bundle.labels.See my Profile'|trans }}</a></li>
@@ -116,8 +116,7 @@
 
 
 
-    <div class="container contenido">
-        <div class="row">
+    <div class="container">
             {% if app.request.hasPreviousSession %}
                 {% for type, messages in app.session.flashbag.all() %}
                     {% for message in messages %}
@@ -133,7 +132,6 @@
 
             {% block fos_user_content %} {% endblock fos_user_content %}
 
-        </div>
     </div>
 
 
