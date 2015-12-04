@@ -1,0 +1,21 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <h1>{{ 'profile.labels.self' | trans }} {{ 'crud.labels.show' | trans }}</h1>
+
+    <table id='tabla_perfil' class='table table-bordered'>
+        <tr>
+            <td>{{ 'profile.labels.username'|trans }}</td>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'profile.labels.email'|trans }}</td>
+            <td>{{ user.email }}</td>
+        </tr>
+
+
+    </table>
+
+
+    <a class='btn btn-default' href='./edit'>   {{ 'crud.labels.edit' | trans }} </a>
+{% endblock fos_user_content %}

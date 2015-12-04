@@ -1,0 +1,22 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    <h1>{{ 'profile.labels.self' | trans }} {{ 'crud.labels.edit' | trans }}</h1>
+
+
+    <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+        {{ form_widget(form) }}
+        <div>
+            <button type="submit" id="appbundle_operation_submit" name="appbundle_user[submit]" class="btn-default btn">{{ 'Save' | trans }}</button>
+        </div>
+    </form>
+
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+            <button class="btn btn-primary" id="saveEntity" style="width: 33%"> {{ 'Save' | trans }} </button>
+            <button class="btn btn-default" id="goBack" style="width: 33%"> {{ 'Go back' | trans }}  </button>
+            <button class="btn btn-default" id="changePassword" style="width: 33%"> {{ 'Change password' | trans }}  </button>
+        </div>
+    </div>
+{% endblock fos_user_content %}

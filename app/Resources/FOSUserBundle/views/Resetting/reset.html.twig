@@ -1,0 +1,14 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    {% trans_default_domain 'FOSUserBundle' %}
+
+    <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset" class="form-signin">
+        {{ form_widget(form) }}
+        <div class="form-group">
+            <input type="submit" class="btn btn-lg btn-default " value="{{ 'resetting.reset.submit'|trans }}" />
+        </div>
+    </form>
+
+{% endblock fos_user_content %}
