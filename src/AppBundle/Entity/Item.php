@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Item
@@ -63,6 +65,38 @@ class Item
      */
     private $subtotal;
 
+    /**
+    *@Assert\Callback
+    */
+
+    public function validate(ExecutionContextInterface $context) {
+
+        if ( $this->getProduct() === null ) {
+
+            $context->buildViolation('Select a product')
+                ->atPath('product')
+                ->addViolation();
+            return;
+        }
+        if ( $this->getProduct()->getQty() <= 0 ) {
+
+            $context->buildViolation('Stock is empty')
+                ->atPath('qty')
+                ->addViolation();
+
+            return;
+        }
+        //fixme update fails when product qty is 0
+        if ( ($this->getProduct()->getQty() - $this->getQty()) < 0 ) {
+
+            $context->buildViolation('No enough stock')
+                ->atPath('qty')
+                ->addViolation();
+
+            return;
+        }
+
+    }
 
     /**
      * Get id
@@ -217,4 +251,7 @@ class Item
     {
         return $this->subtotal;
     }
+
+
+
 }
