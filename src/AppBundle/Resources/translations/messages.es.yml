@@ -4,9 +4,46 @@ Back to the list: Volver al listado
 
 Create a new entry: Crear una nueva entrada
 Select the product: Seleccione el producto
+Select a client(Optional): Seleccione un cliente(Opcional)
+Select a supplier(Optional): Seleccione un proveedor(Opcional)
+Both: Los dos
+All: Todas
+With cash: En efectivo
+Credit: A Credito
+
+
 Create: Crear
 Delete: Eliminar
 Update: Actualizar
+
+Delete the sale?: ¿Eliminar la venta ?
+Click on delete to remove the sale: Haga click en eliminar para borrarla.
+Dismiss: Cancelar
+Search: Buscar
+Save: Guardar
+Submit: Enviar
+Yes: Si
+No: No
+Go back: Volver
+
+Error: Error
+Forbidden: Prohibido
+
+You don\'t have permission to see this page: No tiene permisos para ver la pagina.
+The requested url does not exist: La url solicitada no existe
+
+Stock is empty: No hay stock
+Select a client(optional): Seleccione un cliente(opcional)
+Select (optional): Seleccione (opcional)
+
+
+Password: Contraseña
+
+search:
+    labels:
+        initDate: inicio
+        endDate: fin
+        group: Agrupar
 
 app:
     name: POS
@@ -36,7 +73,6 @@ product:
         price:  Precio
         cost: Costo
         qty:  Cantidad
-        category: Categoria
         deleted:  Borrado
 
 operation:
@@ -48,6 +84,12 @@ sale:
         self: Venta
         cash:      Efectivo
         person: Cliente
+report:
+    labels:
+        self: Reporte
+        profit: Ganancia
+        cost: Costo
+        income: Ingreso
 person:
   labels:
     address: Dirección
@@ -77,3 +119,9 @@ fos_user_bundle:
     labels:
         See my Profile: Ver mi perfil
         Log out: Salir
+profile:
+    labels:
+        self: Perfil
+        username: Nombre Usuario
+        email: Correo Electronico
+Change password: Contraseña
