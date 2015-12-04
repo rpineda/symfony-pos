@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use AppBundle\Entity\Sale;
 
 /**
  * Item
@@ -78,7 +79,7 @@ class Item
                 ->addViolation();
             return;
         }
-        if ( $this->getProduct()->getQty() <= 0 ) {
+        if ( $this->getOperation() instanceof Sale && $this->getProduct()->getQty() <= 0 ) {
 
             $context->buildViolation('Stock is empty')
                 ->atPath('qty')
@@ -87,7 +88,7 @@ class Item
             return;
         }
         //fixme update fails when product qty is 0
-        if ( ($this->getProduct()->getQty() - $this->getQty()) < 0 ) {
+        if ( $this->getOperation() instanceof Sale && ($this->getProduct()->getQty() - $this->getQty()) < 0 ) {
 
             $context->buildViolation('No enough stock')
                 ->atPath('qty')
