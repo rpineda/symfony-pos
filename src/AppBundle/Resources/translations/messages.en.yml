@@ -1,0 +1,125 @@
+Back to the list: Back to the list
+
+Create a new entry: Create a new entry
+Select the product: Select the product
+Select a client(Optional): Select a client(Optional)
+Select a supplier(Optional): Select a supplier(Optional)
+Both: Both
+All: All
+With cash: With cash
+Credit: Credit
+
+
+Create: Create
+Delete: Delete
+Update: Update
+
+Delete the sale?: Delete the sale?
+Click on delete to remove the sale: Click on delete to remove the sale
+Dismiss: Dismiss
+Search: Search
+Save: Save
+Submit: Submit
+Yes: Yes
+No: No
+Go back: Go back
+
+Error: Error
+Forbidden: Forbidden
+
+You don\'t have permission to see this page: You don\'t have permission to see this page
+The requested url does not exist: The requested url does not exist
+
+Stock is empty: Stock is empty
+Select a client(optional): Select a client(optional)
+Select (optional): Select (optional)
+
+
+Password: Contraseña
+
+search:
+    labels:
+        initDate: From
+        endDate: To
+        group: Group
+
+app:
+    name: POS
+entity:
+    labels:
+        name: name
+        createdAt: Created
+        updatedAt: Updated
+        deleted: Deleted
+        actions: Actions
+crud:
+    labels:
+        new: New
+        edit: Edit
+        list:   List
+        delete: Delete
+        show: Show
+category:
+    labels:
+        self: Category
+        name:  Name
+        deleted:  Deleted
+product:
+    labels:
+        self: Product
+        name:  Name
+        price:  Price
+        cost: Cost
+        qty:  Qty
+        deleted:  Deleted
+
+operation:
+        labels:
+          cash: Cash
+          total: Total
+sale:
+    labels:
+        self: Sale
+        person: Client
+report:
+    labels:
+        self: Reports
+        profit: Profits
+        cost: Costs
+        income: Income
+person:
+  labels:
+    address: Address
+
+client:
+    labels:
+        self: Client
+supplier:
+    labels:
+        self: Supplier
+
+
+purchase:
+    labels:
+        self: Purchase
+        person: Supplier
+
+item:
+    labels:
+        self:   Item
+        qty:      Qty
+        price:     Price
+        cost: Cost
+        product: Product
+        subtotal: Subtotal
+
+fos_user_bundle:
+    labels:
+        See my Profile: See my Profile
+        Log out: Log out
+profile:
+    labels:
+        self: Profile
+        username: Username
+        email: E-mail
+Change password: Password
