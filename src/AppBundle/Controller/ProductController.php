@@ -267,7 +267,7 @@ class ProductController extends Controller
     /**
      * Get a Product entity.
      *
-     * @Route("/api/{id}", name="product_get")
+     * @Route("/api/{id}", name="product_get", options={"expose"=true})
      * @Method("GET")
      */
     public function readAction(Request $request, $id) {
