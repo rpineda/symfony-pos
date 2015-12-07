@@ -2,16 +2,16 @@
   list-style: none; }
 
 body {
-  font-family: 'Droid Sans', sans-serif; }
+  font-family: 'Roboto', sans-serif; }
+
+#bottom_bar {
+  width: 100%; }
 
 form input, .row_product_cost, .row_product_price, .row_product_qty, .row_id, .row_createdAt, .row_updatedAt {
   font-family: 'Droid Sans Mono', monospace; }
 
 label {
   text-transform: uppercase; }
-
-form {
-  margin: 1em; }
 
 .items {
   padding-left: 0px; }
@@ -22,6 +22,13 @@ form {
   font-size: 2em;
   color: #ac2925; }
 
+#appBundle_search_operation .form-group:first-of-type [id^=appBundle_search_operation_], #appBundle_search_operation .form-group:nth-of-type(2) [id^=appBundle_search_operation_] {
+  width: auto;
+  display: inline; }
+
+#appBundle_search_operation .form-group:first-of-type label, #appBundle_search_operation .form-group:nth-of-type(2) label {
+  display: block; }
+
 #addItem {
   font-size: 2em;
   text-decoration: none;
@@ -31,10 +38,17 @@ form {
   display: none; }
 
 .row_actions ul {
+  padding-left: 0%;
   list-style: none; }
 
-.record_actions {
-  padding-left: 50%; }
+button[type=submit] {
+  display: none; }
+
+.record_actions, .new_actions {
+  display: none; }
+
+#appBundle_search_operation_submit {
+  display: block; }
 
 @media screen and (min-device-width: 768px) and (orientation: landscape) {
   .row_updatedAt, .row_createdAt, .row_deleted, .row_address, .row_price, .row_cost {
