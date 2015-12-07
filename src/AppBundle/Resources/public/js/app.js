@@ -195,8 +195,9 @@ jQuery(document).ready(function () {
 
             if(isNaN(id ))
                 return;
-            $.get("app_dev.php/product/api/" + id, function (data, status) {
+            $.get(Routing.generate('product_get',  { id: id }), function (data, status) {
                 $("input[name='" + priceName + "']").val(data.price);
+
 
 
             });
@@ -289,7 +290,7 @@ jQuery(document).ready(function () {
 
             if(isNaN(id ))
                 return;
-            $.get("app_dev.php/product/api/" + id, function (data, status) {
+            $.get(Routing.generate('product_get',  { id: id }), function (data, status) {
                 $("input[name='" + costName + "']").val(data.cost);
 
 
