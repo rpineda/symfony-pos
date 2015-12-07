@@ -13,6 +13,9 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
+        js_router:
+            pattern: ^/(js\/routing)
+            security: false
         main:
             pattern: ^/
             form_login:
