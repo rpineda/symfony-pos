@@ -15,23 +15,23 @@
             </tr>
             <tr>
                 <th>{{ 'product.labels.price' | trans }}</th>
-                <td>{{ entity.price }}</td>
+                <td>{{ entity.price| localizednumber('currency') }}</td>
             </tr>
             <tr>
                 <th>{{ 'product.labels.cost' | trans }}</th>
-                <td>{{ entity.cost }}</td>
+                <td>{{ entity.cost| localizednumber('currency') }}</td>
             </tr>
             <tr>
                 <th>{{ 'product.labels.qty' | trans }}</th>
-                <td>{{ entity.qty }}</td>
+                <td>{{ entity.qty | localizednumber('decimal')}}</td>
             </tr>
             <tr>
                 <th>{{ 'entity.labels.createdAt' | trans }}</th>
-                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.createdAt| localizeddate('short','short') }}</td>
             </tr>
             <tr>
                 <th>{{ 'entity.labels.updatedAt' | trans }}</th>
-                <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.updatedAt| localizeddate('short','short') }}</td>
             </tr>
             <tr>
                 <th>            {{ 'entity.labels.deleted' | trans }}                </th>

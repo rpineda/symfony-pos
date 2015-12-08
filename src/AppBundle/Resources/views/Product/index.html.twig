@@ -22,11 +22,11 @@
             <tr>
                 <td class="row_id"><a href="{{ path('product_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td class="row_name">{{ entity.name }}</td>
-                <td class="row_product_price">{{ entity.price | localizedcurrency('ARS')}}</td>
-                <td class="row_product_cost">{{ entity.cost | localizedcurrency('ARS')}}</td>
-                <td class="row_product_qty">{{ entity.qty| round(2, 'floor') | number_format(2, ',', '.') }}</td>
-                <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt|date('Y/m/d H:i') }}{% endif %}</td>
-                <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt|date('Y/m/d H:i') }}{% endif %}</td>
+                <td class="row_product_price">{{ entity.price  | localizednumber('currency')}}</td>
+                <td class="row_product_cost">{{ entity.cost  | localizednumber('currency')}}</td>
+                <td class="row_product_qty">{{ entity.qty| localizednumber('decimal') }}</td>
+                <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt| localizeddate('short','short') }}{% endif %}</td>
+                <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt| localizeddate('short','short') }}{% endif %}</td>
                 <td class="row_deleted">{{entity.deleted  ? 'Yes' | trans :'No' | trans  }}</td>
                 <td class="row_actions">
                 <ul class="index_actions">

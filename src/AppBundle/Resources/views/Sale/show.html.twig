@@ -17,7 +17,7 @@
             
             <tr>
                 <th>{{ 'item.labels.self' | trans }}</th>
-                <td>{{ entity.items.count  }}</td>
+                <td>{{ entity.items.count | localizednumber('decimal')  }}</td>
             </tr>
 
             <tr>
@@ -40,7 +40,7 @@
 
             <tr>
                 <th>{{ 'operation.labels.total' | trans }}</th>
-                <td>{{ entity.total }}</td>
+                <td>{{ entity.total | localizednumber('currency') }}</td>
             </tr>
             <tr>
                 <th>{{ 'operation.labels.cash' | trans }}</th>
@@ -48,11 +48,11 @@
             </tr>
             <tr>
                 <th>{{ 'entity.labels.createdAt' | trans }}</th>
-                <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.createdAt| localizeddate('short','short') }}</td>
             </tr>
             <tr>
                 <th>{{ 'entity.labels.updatedAt' | trans }}</th>
-                <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.updatedAt| localizeddate('short','short') }}</td>
             </tr>
         </tbody>
     </table>

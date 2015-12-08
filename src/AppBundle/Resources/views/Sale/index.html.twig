@@ -22,7 +22,7 @@
         {% for entity in entities %}
             <tr>
                 <td class="row_id"><a href="{{ path('sale_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td class="row_operation_total">{{ entity.total | localizedcurrency('ARS')}}</td>
+                <td class="row_operation_total">{{ entity.total | localizednumber('currency')}}</td>
                 <td class="row_operation_cash"> {{entity.cash ? 'Yes' | trans :'No' | trans  }}</td>
                 <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt| localizeddate('short','short')   }}{% endif %}</td>
                 <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt| localizeddate('short','short')   }}{% endif %}</td>
