@@ -23,9 +23,9 @@
             <tr>
 
                 <td class="row_">{{ entity.0.product.name }}</td>
-                <td class="row_">{{ entity.cost |   localizednumber('currency')}}</td>
-                <td class="row_">{{ entity.income  | localizednumber('currency')}}</td>
-                <td class="row_">{{ entity.profit  | localizednumber('currency')}}</td>
+                <td class="row_report_cost">{{ entity.cost |   localizednumber('currency')}}</td>
+                <td class="row_report_income">{{ entity.income  | localizednumber('currency')}}</td>
+                <td class="row_report_profit">{{ entity.profit  | localizednumber('currency')}}</td>
             </tr>
         {% endfor %}
 
