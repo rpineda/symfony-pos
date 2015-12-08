@@ -7,7 +7,7 @@ body {
 #bottom_bar {
   width: 100%; }
 
-form input, .row_product_cost, .row_product_price, .row_product_qty, .row_id, .row_createdAt, .row_updatedAt {
+.row_report_cost, .row_report_income, .row_report_profit, .row_operation_total, .row_product_cost, .row_product_price, .row_product_qty, .row_id, .row_createdAt, .row_updatedAt, .total, .subtotal, .qty, .price, .cost, .row_product_price_list {
   font-family: 'Droid Sans Mono', monospace; }
 
 label {
@@ -55,5 +55,3 @@ button[type=submit] {
     display: table-cell; }
   .delete_item {
     padding-left: 0px; } }
-
-/*# sourceMappingURL=app.css.map */
