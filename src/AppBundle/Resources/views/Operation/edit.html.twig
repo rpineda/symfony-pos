@@ -1,0 +1,48 @@
+{% extends 'AppBundle:Operation:new.html.twig' %}
+
+
+
+    {% block delete_form %}
+
+        {{ form(delete_form) }}
+
+    {% endblock %}
+
+
+
+    {% block bottom_bar %}
+
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+
+            <button class="btn btn-primary" id="saveEntity" > {{ 'Save' | trans }} </button>
+            <button class="btn btn-default" id="goBack" > {{ 'Go back' | trans }}  </button>
+            <a href="#" class="btn btn-warning" data-target="#myModal" data-toggle="modal" id="ask_delete_button" > {{ 'Delete' | trans }}  </a>
+
+        </div>
+    </div>
+
+    {% endblock %}
+
+
+    {% block modal_delete %}
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="myModalLabel">{{ 'Delete the sale?' | trans }}</h3>
+                    </div>
+                    <div class="modal-body">
+                        {{ 'Click on delete to remove the sale' | trans }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | trans }}</button>
+                        <button type="button" id="deleteOperation" class="btn btn-danger">{{ 'Delete' | trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+

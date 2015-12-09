@@ -1,0 +1,75 @@
+{% block collection_widget %}
+    {% spaceless %}
+        <div class="collection">
+            {% if prototype is defined %}
+                {% set attr = attr|merge({'data-prototype': block('collection_item_widget') }) %}
+            {% endif %}
+            <div {{ block('widget_container_attributes') }}>
+                {{ form_errors(form) }}
+                    {% for rows in form %}
+                        <div class="row">
+                            {% set fieldNum = 1 %}
+                            {% for row in rows %}
+
+                                <div class="field{{ fieldNum }}  col-lg-2">
+                                    {{ form_label(row) }}
+                                    {%  if fieldNum == 1 %}
+                                        {% set class = "product" %}
+                                    {% endif %}
+                                    {%  if fieldNum == 2 %}
+                                        {% set class = "qty" %}
+                                    {% endif %}
+                                    {%  if fieldNum == 3 %}
+                                        {% set class = "price" %}
+                                    {% endif %}
+                                    {%  if fieldNum == 4 %}
+                                        {% set class = "subtotal" %}
+                                    {% endif %}
+                                    {{ form_widget(row, { 'attr': { 'class': class }}) }}
+                                </div>
+                                {% set fieldNum = fieldNum + 1 %}
+                            {% endfor %}
+                            <div class="col-lg-2 col-xs-12">
+                                <a href="#" class="delete_item"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    {% endfor %}
+                {{ form_rest(form) }}
+            </div>
+
+        </div>
+    {% endspaceless %}
+{% endblock collection_widget %}
+
+{% block collection_item_widget %}
+    {% spaceless %}
+        <div class="row">
+            {% set fieldNum = 1 %}
+            {% for row in prototype %}
+
+                <div class="field{{ fieldNum }} col-lg-2">
+                    {%  if fieldNum == 1 %}
+                        {% set class = "product" %}
+                    {% endif %}
+                    {%  if fieldNum == 2 %}
+                        {% set class = "qty" %}
+                    {% endif %}
+                    {%  if fieldNum == 3 %}
+                        {% set class = "price" %}
+                    {% endif %}
+                    {%  if fieldNum == 4 %}
+                        {% set class = "subtotal" %}
+                    {% endif %}
+
+                    {{ form_label(row) }}
+                    {{ form_widget(row, { 'attr': { 'class': class }}) }}
+                </div>
+                {% set fieldNum = fieldNum + 1 %}
+            {% endfor %}
+            <div class="col-lg-2 col-xs-12">
+                <a href="#" class="delete_item"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock collection_item_widget %}
