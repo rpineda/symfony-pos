@@ -7,6 +7,8 @@
             <div {{ block('widget_container_attributes') }}>
                 {{ form_errors(form) }}
                     {% for rows in form %}
+                        {% set rowNum = 0 %}
+
                         <div class="row">
                             {% set fieldNum = 1 %}
                             {% for row in rows %}
@@ -27,13 +29,17 @@
                                     {% endif %}
                                     {{ form_widget(row, { 'attr': { 'class': class }}) }}
                                 </div>
+
                                 {% set fieldNum = fieldNum + 1 %}
                             {% endfor %}
+                            <div><span class="glyphicon glyphicon-info-sign imgPreviewLink"></span><img class="img-responsive imgPreview" id="imgPreview{{ rowNum }}" > </div>
                             <div class="col-lg-2 col-xs-12">
                                 <a href="#" class="delete_item"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
                             </div>
                             <div class="clear"></div>
                         </div>
+                        {% set rowNum = rowNum + 1 %}
+
                     {% endfor %}
                 {{ form_rest(form) }}
             </div>
@@ -45,6 +51,7 @@
 {% block collection_item_widget %}
     {% spaceless %}
         <div class="row">
+
             {% set fieldNum = 1 %}
             {% for row in prototype %}
 
@@ -67,6 +74,7 @@
                 </div>
                 {% set fieldNum = fieldNum + 1 %}
             {% endfor %}
+            <div><span class="glyphicon glyphicon-info-sign imgPreviewLink" ></span><img class="img-responsive imgPreview" id="imgPreview__num__" > </div>
             <div class="col-lg-2 col-xs-12">
                 <a href="#" class="delete_item"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a>
             </div>
