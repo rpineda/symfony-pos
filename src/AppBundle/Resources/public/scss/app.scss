@@ -5,8 +5,8 @@
 body{
   font-family: 'Roboto', sans-serif;
 }
-#bottom_bar{
-  width: 100%;
+#goBack, #saveEntity{
+  width: 33%;
 }
 
 .row_report_cost , .row_report_income, .row_report_profit, .row_operation_total, .row_product_cost, .row_product_price, .row_product_qty, .row_id, .row_createdAt, .row_updatedAt, .total, .subtotal, .qty, .price, .cost, .row_product_price_list{
@@ -43,7 +43,7 @@ label{
 
 
 
-#addItem{
+#addItem, .imgPreviewLink{
   font-size: 2em;
   text-decoration: none;
   color: #0f0f0f;
@@ -68,12 +68,16 @@ button[type=submit]{
 display: block;
 }
 
+
 @media screen and (min-device-width: 768px) and (orientation: landscape){
   .row_updatedAt, .row_createdAt, .row_deleted, .row_address, .row_price, .row_cost{
     display: table-cell;
   }
   .delete_item{
     padding-left: 0px;
+  }
+  .imgPreview{
+    display: none;
   }
 }
 
