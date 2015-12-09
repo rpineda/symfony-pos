@@ -7,7 +7,7 @@ function addItem (e){
 
     var $detalles = $("#appbundle_operation_items");
     var $index = $detalles.children().length;
-    var $detalle = $detalles.attr("data-prototype").replace(/__name__/g, $index );
+    var $detalle = $detalles.attr("data-prototype").replace(/__name__/g, $index).replace(/__num__/g, $index);
     $detalles.append( $detalle);
 };
 
@@ -181,6 +181,15 @@ jQuery(document).ready(function () {
 
         });
 
+        $("body").delegate(".imgPreviewLink", "click", function () {
+            if(jQuery(this).next().css("display") === "none") {
+                jQuery(this).next().css("display", "block");
+            }
+            else{
+               jQuery(this).next().css("display", "none");
+            }
+        });
+
         $("body").delegate(".product", "change", function () {
 
             var id = parseInt(jQuery(this).find("option:selected").attr("value"));
@@ -188,12 +197,17 @@ jQuery(document).ready(function () {
             var productName = (jQuery(this).attr("name"));
             var priceName = productName.replace("product", "price");
 
+            var regex = new RegExp(/\d/);
+            var number = regex.exec(productName)[0];
+
             if(isNaN(id ))
                 return;
             $.get(Routing.generate('product_get',  { id: id }), function (data, status) {
                 $("input[name='" + priceName + "']").val(data.price);
-
-
+                var selector = "#imgPreview" + number;
+                if( data.image != undefined ){
+                    $(selector).attr("src", '/images/' + data.image);
+                }
 
             });
 
