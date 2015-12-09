@@ -5,15 +5,10 @@
 
 function addItem (e){
 
-    var $detalles = $("ul.items");
-    var $index = $detalles.data('index') || 0;
+    var $detalles = $("#appbundle_operation_items");
+    var $index = $detalles.children().length;
     var $detalle = $detalles.attr("data-prototype").replace(/__name__/g, $index );
-    var $li = $('<li></li>').append($detalle);
-    //var $removeFormA = $('<div class="form-group"><a href="#" class="delete_item"> <span  class="glyphicon glyphicon-remove" aria-hidden="true"></span> </a></div>');
-    //$li.children().append($removeFormA);
-    $detalles.append( $li);
-
-    $detalles.data('index', $index + 1);
+    $detalles.append( $detalle);
 };
 
 function deleteItem(e){
