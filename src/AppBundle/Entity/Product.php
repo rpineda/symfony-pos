@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Product
@@ -77,6 +79,17 @@ class Product
      * @ORM\Column(name="qty", type="float")
      */
     private $qty;
+
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Image(
+     *     mimeTypes = {"image/jpeg" , "image/png"}
+     * )
+     *
+     */
+    private $image;
+
 
 
     /**
@@ -300,5 +313,30 @@ class Product
     public function onUpdate()
     {
         $this->setUpdatedAt(new \DateTime());
+    }
+
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Product
+     */
+
+
+    public function setImage($image )
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

@@ -12,6 +12,11 @@ services:
     arguments: ['@service_container']
     tags:
        - { name: doctrine.event_listener, event: onFlush }
+  my.listener.product:
+      class: AppBundle\Listener\ProductListener
+      arguments: ['@service_container']
+      tags:
+         - { name: doctrine.event_listener, event: onFlush }
 
   twig.extension.intl:
     class: Twig_Extensions_Extension_Intl

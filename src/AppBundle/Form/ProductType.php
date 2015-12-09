@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class ProductType extends AbstractType
 {
@@ -33,6 +34,7 @@ class ProductType extends AbstractType
             ->add('cost', null, ['label' => 'product.labels.cost'])
             ->add('qty', null, ['label' => 'product.labels.qty'])
             ->add('deleted', null, ['label' => 'category.labels.deleted'])
+            ->add('image', "file", [ 'data_class' => null , 'required' => false])
 
         ;
     }

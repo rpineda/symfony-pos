@@ -38,6 +38,12 @@
                 <td>{{ entity.deleted ? 'Yes' | trans :'No' | trans }}</td>
             </tr>
 
+            {% if entity.image != null %}
+                <img class="img-responsive" src="/images/{{ asset(entity.image) }}" />
+            {% endif %}
+
+
+
         </tbody>
     </table>
 
