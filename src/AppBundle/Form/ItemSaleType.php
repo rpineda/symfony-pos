@@ -34,6 +34,8 @@ class ItemSaleType extends AbstractType
 
             ->add('qty', null, ['label' => 'product.labels.qty', 'attr'=> array('class'=>'qty')])
             ->add('price', null, ['label' => 'product.labels.price', 'attr'=> array('class'=>'price') ])
+            ->add('tax', null, ['label' => 'tax.labels.self', 'attr'=> array('class'=>'tax') ])
+            ->add('discount', null, ['label' => 'discount.labels.self', 'attr'=> array('class'=>'discount') ])
             ->add('subtotal', null, ['label' => 'item.labels.subtotal', 'attr'=> array('class'=>'subtotal')])
 
 
