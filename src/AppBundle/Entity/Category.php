@@ -50,6 +50,11 @@ class Category
      */
     private $deleted;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Tax", cascade="persist")
+     * @ORM\JoinColumn(name="tax", referencedColumnName="id")
+     * */
+    private $tax;
 
     /**
      * Get id
@@ -177,5 +182,28 @@ class Category
     {
         $this->setUpdatedAt(new \DateTime());
     }
-}
 
+    /**
+     * Set tax
+     *
+     * @param \AppBundle\Entity\Tax $tax
+     *
+     * @return Category
+     */
+    public function setTax(\AppBundle\Entity\Tax $tax = null)
+    {
+        $this->tax = $tax;
+
+        return $this;
+    }
+
+    /**
+     * Get tax
+     *
+     * @return \AppBundle\Entity\Tax
+     */
+    public function getTax()
+    {
+        return $this->tax;
+    }
+}
