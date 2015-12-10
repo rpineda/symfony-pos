@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class CategoryType extends AbstractType
 {
@@ -16,6 +17,18 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name', null, ['label' => 'category.labels.name'])
+            ->add('tax', 'entity', array('class' => 'AppBundle:Tax',
+                'property' => 'name',
+                'label' => 'tax.labels.self',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->select('t')
+                        ->from('AppBundle:Tax', 't')
+                        ->where('t.deleted = false')
+                        ;
+                }
+
+            ))
             ->add('deleted', null, ['label' => 'category.labels.deleted'])
         ;
     }
