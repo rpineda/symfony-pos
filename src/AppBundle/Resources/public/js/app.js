@@ -104,7 +104,7 @@ jQuery(document).ready(function () {
 
 
     $("body").delegate("#saveEntity", "click", function (e){
-        $("button[name='appbundle_category[submit]'], button[name='appbundle_person[submit]'], button[name='appbundle_product[submit]'],  button[name='appbundle_operation[submit]'] ,button[name='appbundle_user[submit]']").click();
+        $("button[name='appbundle_category[submit]'], button[name='appbundle_person[submit]'], button[name='appbundle_product[submit]'],  button[name='appbundle_operation[submit]'] ,button[name='appbundle_user[submit]'], button[name='appbundle_tax[submit]']").click();
     });
 
     $("body").delegate("#deleteEntity", "click", function (e){
@@ -124,17 +124,30 @@ jQuery(document).ready(function () {
 
             var elementName = element.attr("name");
             var priceName = elementName.replace('qty', 'price');
+            var taxName = elementName.replace('qty', 'tax');
+            var discountName = elementName.replace('qty', 'discount');
             var subtotalName = elementName.replace('qty', 'subtotal');
 
 
             var priceElement = $("input[name='" + priceName + "']");
+            var taxElement = $("input[name='" + taxName + "']");
+            var discountElement = $("input[name='" + discountName + "']");
             var subtotalElement = $("input[name='" + subtotalName + "']");
 
             var qty = parseFloat( element.val() );
+            var tax = parseFloat( taxElement.val() );
+            var discount = parseFloat( discountElement.val() );
             var price = parseFloat( priceElement.val() );
 
+            var taxValue = tax * price;
+            var subSubtotal = qty * price;
+            var subtotal = subSubtotal + taxValue;
 
-            subtotalElement.val((qty * price).toFixed(2));
+            var discountAmount = discount * subtotal;
+            if( ! isNaN(discountAmount)) {
+                subtotal = subtotal - discountAmount;
+            }
+            subtotalElement.val(subtotal.toFixed(2));
 
 
         });
@@ -159,6 +172,12 @@ jQuery(document).ready(function () {
 
         });
 
+
+        $("body").delegate(".discount, .tax", "keyup",  function (){
+
+            $(".qty").trigger("keyup");
+
+        });
 
         $("body").delegate(".subtotal", "keyup",  function (){
             var element = jQuery(this);
@@ -196,6 +215,9 @@ jQuery(document).ready(function () {
 
             var productName = (jQuery(this).attr("name"));
             var priceName = productName.replace("product", "price");
+            var taxName = productName.replace("product", "tax");
+            var discountName = productName.replace("product", "discount");
+
 
             var regex = new RegExp(/\d/);
             var number = regex.exec(productName)[0];
@@ -204,6 +226,9 @@ jQuery(document).ready(function () {
                 return;
             $.get(Routing.generate('product_get',  { id: id }), function (data, status) {
                 $("input[name='" + priceName + "']").val(data.price);
+                $("input[name='" + taxName + "']").val(data.category.tax.value);
+                $("input[name='" + discountName + "']").val(0);
+
                 var selector = "#imgPreview" + number;
                 if( data.image != undefined ){
                     $(selector).attr("src", '/images/' + data.image);
@@ -213,7 +238,7 @@ jQuery(document).ready(function () {
 
         });
 
-        $("body").delegate(".qty,.cost,.subtotal", "keyup", function (e){
+        $("body").delegate(".qty,.cost,.subtotal,.discount", "keyup", function (e){
             var sum = 0;
             $(".subtotal").each(function () {
                 if (!isNaN(this.value) && this.value.length !== 0) {
@@ -233,17 +258,30 @@ jQuery(document).ready(function () {
 
             var elementName = element.attr("name");
             var priceName = elementName.replace('qty', 'cost');
+            var taxName = elementName.replace('qty', 'tax');
+            var discountName = elementName.replace('qty', 'discount');
             var subtotalName = elementName.replace('qty', 'subtotal');
 
 
             var priceElement = $("input[name='" + priceName + "']");
+            var taxElement = $("input[name='" + taxName + "']");
+            var discountElement = $("input[name='" + discountName + "']");
             var subtotalElement = $("input[name='" + subtotalName + "']");
 
             var qty = parseFloat( element.val() );
+            var tax = parseFloat( taxElement.val() );
+            var discount = parseFloat( discountElement.val() );
             var price = parseFloat( priceElement.val() );
 
+            var taxValue = tax * price;
+            var subSubtotal = qty * price;
+            var subtotal = subSubtotal + taxValue;
 
-            subtotalElement.val((qty * price).toFixed(2));
+            var discountAmount = discount * subtotal;
+            if( ! isNaN(discountAmount)) {
+                subtotal = subtotal - discountAmount;
+            }
+            subtotalElement.val(subtotal.toFixed(2));
 
 
         });
@@ -268,6 +306,12 @@ jQuery(document).ready(function () {
 
         });
 
+
+        $("body").delegate(".discount, .tax", "keyup",  function (){
+
+            $(".qty").trigger("keyup");
+
+        });
 
         $("body").delegate(".subtotal", "keyup",  function (){
             var element = jQuery(this);
@@ -296,11 +340,14 @@ jQuery(document).ready(function () {
 
             var productName = (jQuery(this).attr("name"));
             var costName = productName.replace("product", "cost");
-
+            var taxName = productName.replace("product", "tax");
+            var discountName = productName.replace("product", "discount");
             if(isNaN(id ))
                 return;
             $.get(Routing.generate('product_get',  { id: id }), function (data, status) {
                 $("input[name='" + costName + "']").val(data.cost);
+                $("input[name='" + taxName + "']").val(data.category.tax.value);
+                $("input[name='" + discountName + "']").val(0);
 
 
             });
