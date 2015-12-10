@@ -62,6 +62,20 @@ class Item
     /**
      * @var float
      *
+     * @ORM\Column(name="tax", type="float")
+     */
+    private $tax;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="discount", type="float")
+     */
+    private $discount;
+
+    /**
+     * @var float
+     *
      * @ORM\Column(name="subtotal", type="float")
      */
     private $subtotal;
@@ -255,4 +269,52 @@ class Item
 
 
 
+
+    /**
+     * Set tax
+     *
+     * @param float $tax
+     *
+     * @return Item
+     */
+    public function setTax($tax)
+    {
+        $this->tax = $tax;
+
+        return $this;
+    }
+
+    /**
+     * Get tax
+     *
+     * @return float
+     */
+    public function getTax()
+    {
+        return $this->tax;
+    }
+
+    /**
+     * Set discount
+     *
+     * @param float $discount
+     *
+     * @return Item
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Get discount
+     *
+     * @return float
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
 }
