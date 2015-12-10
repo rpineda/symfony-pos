@@ -220,8 +220,7 @@ class TaxController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Tax entity.');
             }
-
-            $em->remove($entity);
+            $entity->setDeleted(true);
             $em->flush();
         }
 
