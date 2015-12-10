@@ -114,6 +114,13 @@ item:
         cost: Cost
         product: Product
         subtotal: Subtotal
+tax:
+    labels:
+        self: Tax
+        value: Value
+discount:
+    labels:
+        self: Discount
 
 fos_user_bundle:
     labels:

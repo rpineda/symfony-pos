@@ -1,0 +1,26 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body -%}
+    <h1>{{ 'tax.labels.self'|trans }} {{ 'crud.labels.edit' | trans }}</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('tax') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+
+            <button class="btn btn-primary" id="saveEntity" style="width: 32%"> {{ 'Save' | trans }} </button>
+            <button class="btn btn-default" id="goBack" style="width: 32%"> {{ 'Dismiss' | trans }}  </button>
+            <button class="btn btn-danger" id="deleteEntity" style="width: 32%"> {{ 'Delete' | trans }}  </button>
+
+        </div>
+    </div>
+{% endblock %}

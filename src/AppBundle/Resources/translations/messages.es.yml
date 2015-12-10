@@ -117,6 +117,13 @@ item:
         cost: Costo
         product: Producto
         subtotal: Importe
+tax:
+    labels:
+        self: Impuesto
+        value: Valor
+discount:
+    labels:
+        self: Descuento
 fos_user_bundle:
     labels:
         See my Profile: Ver mi perfil

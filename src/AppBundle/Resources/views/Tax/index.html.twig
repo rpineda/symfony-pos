@@ -1,0 +1,55 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body -%}
+    <h1>{{ 'tax.labels.self' |trans }} {{ 'crud.labels.list' | trans }} </h1>
+
+    <table class="records_list table">
+        <thead>
+            <tr>
+                <th class="row_id">Id</th>
+                <th class="row_name">{{ 'entity.labels.name' | trans }}</th>
+                <th>{{ 'tax.labels.value' | trans }}</th>
+                <th class="row_createdAt">{{ 'entity.labels.createdAt' | trans }}</th>
+                <th class="row_updatedAt">{{ 'entity.labels.updatedAt' | trans }}</th>
+                <th class="row_deleted">{{ 'entity.labels.deleted' | trans }}</th>
+                <th class="row_actions">{{ 'entity.labels.actions' | trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('tax_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td class="row_name">{{ entity.name }}</td>
+                <td> {{ entity.value | localizednumber('decimal')}}</td>
+                <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt| localizeddate('short','short')}}{% endif %}</td>
+                <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt| localizeddate('short','short') }}{% endif %}</td>
+                <td class="row_deleted">{{ entity.deleted ? 'Yes' | trans :'No' | trans  }}</td>
+                <td  class="row_actions">
+                <ul class="index_actions">
+                    <li>
+                        <a href="{{ path('tax_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('tax_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+
+            <button class="btn btn-success" id="newEntity" style="width: 32%"> <span class="glyphicon glyphicon-plus"></span> {{ 'crud.labels.new' | trans }} </button>
+
+
+        </div>
+    </div>
+    {% endblock %}
