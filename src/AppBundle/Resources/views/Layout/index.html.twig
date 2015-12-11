@@ -1,0 +1,74 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+
+{% block body -%}
+    <h1>
+        {% block entityName -%}
+
+        {{ 'category.labels.self'|trans }}
+
+        {% endblock %}
+
+        {{ 'crud.labels.list'|trans }}</h1>
+
+    <table class="records_list table">
+        <thead>
+            <tr>
+                <th class="row_id">Id</th>
+                <th class="row_name">{{ 'entity.labels.name'|trans }}</th>
+
+                {% block extraFieldsTh -%}
+
+
+
+                {% endblock %}
+
+                <th class="row_createdAt">{{ 'entity.labels.createdAt'|trans }}</th>
+                <th class="row_updatedAt">{{ 'entity.labels.updatedAt'|trans }}</th>
+
+                {% if entity.deleted  is defined %}
+                    <th class="row_deleted">{{ 'entity.labels.deleted'|trans }}</th>
+                {% endif %}
+
+                <th class="row_actions">{{ 'entity.labels.actions'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td class="row_id">{{ entity.id }}</td>
+                <td class="row_name">{{ entity.name }}</td>
+
+                {% block extraFieldsTd -%}
+
+
+
+                {% endblock %}
+
+                <td class="row_createdAt">{% if entity.createdAt %}{{ entity.createdAt| localizeddate('short','short')   }}{% endif %}</td>
+                <td class="row_updatedAt">{% if entity.updatedAt %}{{ entity.updatedAt| localizeddate('short','short')   }}{% endif %}</td>
+                {% if entity.deleted  is defined %}
+                    <td class="row_deleted">{{entity.deleted ? 'Yes' | trans :'No' | trans  }}</td>
+                {% endif %}
+
+                <td class="row_actions">
+                <ul class="index_actions">
+                    <li>
+                        {% block entityLink -%}
+                            <a href="{{ path('category_show', { 'id': entity.id }) }}">{{ 'crud.labels.show'|trans }} <span class="glyphicon glyphicon-eye-open"></span> </a>
+                        {% endblock %}
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+        <div class="row" id="bottom_bar">
+            <div class="col-xs-12">
+                <button class="btn btn-success" id="newEntity" style="width: 32%"> <span class="glyphicon glyphicon-plus"></span> {{ 'crud.labels.new' | trans }} </button>
+            </div>
+        </div>
+    {% endblock %}

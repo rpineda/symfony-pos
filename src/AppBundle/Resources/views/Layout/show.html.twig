@@ -1,0 +1,60 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body -%}
+    <h1>
+        {% block entityName -%}
+
+           {{ 'category.labels.self'|trans }}
+
+        {% endblock %}
+    </h1>
+
+    <table class="record_properties table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'entity.labels.name'|trans }}</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+
+            {% block extraRows -%}
+
+
+
+            {% endblock %}
+
+            <tr>
+                <th>{{ 'entity.labels.createdAt'|trans }}</th>
+                <td>{{ entity.createdAt| localizeddate('short','short') }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'entity.labels.updatedAt'|trans }}</th>
+                <td>{{ entity.updatedAt| localizeddate('short','short') }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'entity.labels.deleted'|trans }}</th>
+                <td>{{ entity.deleted ? 'Yes' | trans :'No' | trans }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+
+            <li>{{ form(delete_form) }}</li>
+
+
+        </ul>
+
+    <div class="row" id="bottom_bar">
+        <div class="col-xs-12">
+
+            <button class="btn btn-primary" id="editEntity" style="width: 32%"> {{ 'crud.labels.edit' | trans }} </button>
+            <button class="btn btn-default" id="goBack" style="width: 32%"> {{ 'Go back' | trans }}  </button>
+            <button class="btn btn-danger" id="deleteEntity" style="width: 32%"> {{ 'Delete' | trans }}  </button>
+
+        </div>
+    </div>
+{% endblock %}
