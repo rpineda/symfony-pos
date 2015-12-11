@@ -59,6 +59,10 @@ button[type=submit] {
 #appBundle_search_operation_submit {
   display: block; }
 
+@media print {
+  .invoiceLinks {
+    display: none !important; } }
+
 @media screen and (min-device-width: 768px) and (orientation: landscape) {
   .row_updatedAt, .row_createdAt, .row_deleted, .row_address, .row_price, .row_cost {
     display: table-cell; }
