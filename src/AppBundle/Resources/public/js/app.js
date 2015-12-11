@@ -104,7 +104,7 @@ jQuery(document).ready(function () {
 
 
     $("body").delegate("#saveEntity", "click", function (e){
-        $("button[name='appbundle_category[submit]'], button[name='appbundle_person[submit]'], button[name='appbundle_product[submit]'],  button[name='appbundle_operation[submit]'] ,button[name='appbundle_user[submit]'], button[name='appbundle_tax[submit]']").click();
+        $("button[name='appbundle_category[submit]'], button[name='appbundle_person[submit]'], button[name='appbundle_product[submit]'],  button[name='appbundle_operation[submit]'] ,button[name='appbundle_user[submit]'], button[name='appbundle_tax[submit]'], button[name='appbundle_business[submit]']").click();
     });
 
     $("body").delegate("#deleteEntity", "click", function (e){
