@@ -75,7 +75,7 @@
                                 <td>{{ item.subtotal  | localizednumber('currency') }}</td>
                             </tr>
 
-                            {% set taxTotal = taxTotal + item.tax * item.subtotal  %}
+                            {% set taxTotal = taxTotal + item.tax *  item.qty * item.price  %}
                             {% set subTotal = subTotal + item.qty * item.price  %}
 
 
