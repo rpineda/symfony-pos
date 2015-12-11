@@ -1,60 +1,9 @@
-{% extends 'AppBundle::base.html.twig' %}
-
-{% block body -%}
-    <h1>{{ 'category.labels.self'|trans }} </h1>
-
-    <table class="record_properties table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'entity.labels.name'|trans }}</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'entity.labels.createdAt'|trans }}</th>
-                <td>{{ entity.createdAt| localizeddate('short','short') }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'entity.labels.updatedAt'|trans }}</th>
-                <td>{{ entity.updatedAt| localizeddate('short','short') }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'entity.labels.deleted'|trans }}</th>
-                <td>{{ entity.deleted ? 'Yes' | trans :'No' | trans }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-
-            <li>
-                <a class="btn btn-default" href="{{ path('category_edit', { 'id': entity.id }) }}">
-                    <span class=" glyphicon glyphicon-pencil"></span>
-                    {{ 'crud.labels.edit'|trans }}
-                </a>
-            </li>
-
-            <li>{{ form(delete_form) }}</li>
+{% extends 'AppBundle:Layout:show.html.twig' %}
 
 
-            <li>
-                <a  href="{{ path('category') }}">
-                    <span class=" glyphicon glyphicon-chevron-left"></span>
-                    {{ 'Back to the list'|trans }}
-                </a>
-            </li>
-            </ul>
+    {% block entityName -%}
 
-    <div class="row" id="bottom_bar">
-        <div class="col-xs-12">
+        {{ 'category.labels.self'|trans }}
 
-            <button class="btn btn-primary" id="editEntity" style="width: 32%"> {{ 'crud.labels.edit' | trans }} </button>
-            <button class="btn btn-default" id="goBack" style="width: 32%"> {{ 'Go back' | trans }}  </button>
-            <button class="btn btn-danger" id="deleteEntity" style="width: 32%"> {{ 'Delete' | trans }}  </button>
+    {% endblock %}
 
-        </div>
-    </div>
-{% endblock %}
