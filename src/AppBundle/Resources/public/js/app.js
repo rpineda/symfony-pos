@@ -139,7 +139,7 @@ jQuery(document).ready(function () {
             var discount = parseFloat( discountElement.val() );
             var price = parseFloat( priceElement.val() );
 
-            var taxValue = tax * price;
+            var taxValue = tax * price * qty ;
             var subSubtotal = qty * price;
             var subtotal = subSubtotal + taxValue;
 
@@ -273,7 +273,7 @@ jQuery(document).ready(function () {
             var discount = parseFloat( discountElement.val() );
             var price = parseFloat( priceElement.val() );
 
-            var taxValue = tax * price;
+            var taxValue = tax * price * qty ;
             var subSubtotal = qty * price;
             var subtotal = subSubtotal + taxValue;
 
