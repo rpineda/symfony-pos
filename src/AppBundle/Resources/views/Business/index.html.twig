@@ -1,0 +1,30 @@
+{% extends 'AppBundle:Layout:index.html.twig' %}
+
+{% block entityName -%}
+    {{ 'business.labels.self'|trans }}
+{% endblock %}
+
+
+{% block extraFieldsTh -%}
+
+    <th class="row_data_city">{{ 'data.labels.city'|trans }}</th>
+    <th class="row_data_street">{{ 'data.labels.street'|trans }}</th>
+    <th class="row_data_phone">{{ 'data.labels.phone'|trans }}</th>
+    <th class="row_data_email">{{ 'data.labels.email'|trans }}</th>
+    <th class="row_data_initDate">{{ 'data.labels.initDate'|trans }}</th>
+
+{% endblock %}
+
+{% block extraFieldsTd -%}
+    <td class="row_data_city">{{ entity.city }}</td>
+    <td class="row_data_street">{{ entity.street }}</td>
+    <td class="row_data_phone">{{ entity.phone }}</td>
+    <td class="row_data_email">{{ entity.email }}</td>
+    <td class="row_data_initDate">{% if entity.initDate %}{{ entity.initDate| localizeddate('short','short') }}{% endif %}</td>
+{% endblock %}
+
+{% block entityLink -%}
+    <a href="{{ path('business_show', { 'id': entity.id }) }}"> {{ 'crud.labels.show'|trans }} <span class="glyphicon glyphicon-eye-open"></span></a>
+{% endblock %}
+
+

@@ -122,6 +122,23 @@ discount:
     labels:
         self: Discount
 
+data:
+    labels:
+        street: Street
+        email: Email
+        city: City
+        initDate: Init Date
+        phone: Phone
+business:
+    labels:
+        self: Business
+
+invoice:
+    labels:
+        self: Invoice
+
+Date: Date
+
 fos_user_bundle:
     labels:
         See my Profile: See my Profile

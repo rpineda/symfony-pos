@@ -124,6 +124,22 @@ tax:
 discount:
     labels:
         self: Descuento
+data:
+    labels:
+        street: Calle
+        email: Correo Electronico
+        city: Ciudad
+        initDate: Fecha inicio
+        phone: Telefono
+business:
+    labels:
+        self: Negocio
+invoice:
+    labels:
+        self: Factura
+
+Date: Fecha
+
 fos_user_bundle:
     labels:
         See my Profile: Ver mi perfil
