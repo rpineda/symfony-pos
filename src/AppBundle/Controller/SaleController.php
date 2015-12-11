@@ -115,13 +115,14 @@ class SaleController extends Controller
      *
      * @Route("/{id}", name="sale_show")
      * @Method("GET")
-     * @Template()
+     * @Template("AppBundle:Sale:invoice.html.twig")
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('AppBundle:Sale')->find($id);
+        $business = $em->getRepository('AppBundle:Business')->find(1);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Sale entity.');
@@ -131,6 +132,7 @@ class SaleController extends Controller
 
         return array(
             'entity'      => $entity,
+            'business' => $business,
             'delete_form' => $deleteForm->createView(),
         );
     }
