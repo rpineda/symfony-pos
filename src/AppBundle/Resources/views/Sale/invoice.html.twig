@@ -10,10 +10,10 @@
         <tr class="invoiceHeader">
             <td>
                 <p> {{ business.name }}</p>
-                <p>{{ business.city }}</p>
-                <p>{{ business.street }}</p>
-                <p>{{ business.phone }}</p>
-                <p>{{ business.email }}</p>
+                <p>{{ 'data.labels.city' | trans }} : {{ business.city }}</p>
+                <p>{{ 'data.labels.street' | trans }} : {{ business.street }}</p>
+                <p>{{ 'data.labels.phone' | trans }} : {{ business.phone }}</p>
+                <p>{{ 'data.labels.email' | trans }}: {{ business.email }}</p>
             </td>
 
             <td>
