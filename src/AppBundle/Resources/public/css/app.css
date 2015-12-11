@@ -29,6 +29,15 @@ label {
 #appBundle_search_operation .form-group:first-of-type label, #appBundle_search_operation .form-group:nth-of-type(2) label {
   display: block; }
 
+/*Invoice */
+#invoice {
+  font-family: droid sans mono, monospace; }
+  #invoice table {
+    width: 100%; }
+
+.invoiceHeader td {
+  width: 33%; }
+
 #addItem, .imgPreviewLink {
   font-size: 2em;
   text-decoration: none;

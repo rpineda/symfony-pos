@@ -41,6 +41,22 @@ label{
   }
 }
 
+/*Invoice */
+
+#invoice{
+  font-family: droid sans mono, monospace;
+  table{
+    width: 100%;
+  }
+}
+
+.invoiceHeader{
+  td{
+    width: 33%;
+  }
+}
+
+
 
 
 #addItem, .imgPreviewLink{
