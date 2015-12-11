@@ -19,7 +19,7 @@ class BusinessType extends AbstractType
             ->add('city', null,['label' => 'data.labels.city'])
             ->add('street', null,['label' => 'data.labels.street'])
             ->add('phone', null,['label' => 'data.labels.phone'])
-            ->add('email', null,['label' => 'data.labels.phone'])
+            ->add('email', null,['label' => 'data.labels.email'])
             ->add('initDate', null,['label' => 'data.labels.initDate'])
         ;
     }
