@@ -166,7 +166,8 @@ jQuery(document).ready(function () {
             var price = parseFloat( element.val() );
             var qty = parseFloat( qtyElement.val() );
 
-
+            if(isNaN(qty ))
+                return;
             subtotalElement.val((qty * price).toFixed(2));
 
 
@@ -300,7 +301,8 @@ jQuery(document).ready(function () {
             var price = parseFloat( element.val() );
             var qty = parseFloat( qtyElement.val() );
 
-
+            if(isNaN(qty ))
+                return;
             subtotalElement.val((qty * price).toFixed(2));
 
 
