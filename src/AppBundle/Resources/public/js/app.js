@@ -151,53 +151,10 @@ jQuery(document).ready(function () {
 
 
         });
-        $("body").delegate(".price", "keyup", function (){
-            var element = jQuery(this);
 
-
-            var elementName = element.attr("name");
-            var qtyName = elementName.replace('price', 'qty');
-            var subtotalName = elementName.replace('price', 'subtotal');
-
-
-            var qtyElement = $("input[name='" + qtyName + "']");
-            var subtotalElement = $("input[name='" + subtotalName + "']");
-
-            var price = parseFloat( element.val() );
-            var qty = parseFloat( qtyElement.val() );
-
-            if(isNaN(qty ))
-                return;
-            subtotalElement.val((qty * price).toFixed(2));
-
-
-        });
-
-
-        $("body").delegate(".discount, .tax", "keyup",  function (){
+        $("body").delegate(".discount, .tax, .price", "keyup",  function (){
 
             $(".qty").trigger("keyup");
-
-        });
-
-        $("body").delegate(".subtotal", "keyup",  function (){
-            var element = jQuery(this);
-
-
-            var elementName = element.attr("name");
-            var qtyName = elementName.replace('subtotal', 'qty');
-            var priceName = elementName.replace('subtotal', 'price');
-
-
-            var qtyElement = $("input[name='" + qtyName + "']");
-            var priceElement = $("input[name='" + priceName + "']");
-
-            var subtotal = parseFloat( element.val() );
-            var price = parseFloat( priceElement.val() );
-
-
-            qtyElement.val((subtotal / price).toFixed(2));
-
 
         });
 
@@ -239,7 +196,7 @@ jQuery(document).ready(function () {
 
         });
 
-        $("body").delegate(".qty,.cost,.subtotal,.discount", "keyup", function (e){
+        $("body").delegate(".qty,.price,.subtotal", "keyup", function (e){
             var sum = 0;
             $(".subtotal").each(function () {
                 if (!isNaN(this.value) && this.value.length !== 0) {
@@ -286,55 +243,13 @@ jQuery(document).ready(function () {
 
 
         });
-        $("body").delegate(".cost", "keyup", function (){
-            var element = jQuery(this);
 
-
-            var elementName = element.attr("name");
-            var qtyName = elementName.replace('cost', 'qty');
-            var subtotalName = elementName.replace('cost', 'subtotal');
-
-
-            var qtyElement = $("input[name='" + qtyName + "']");
-            var subtotalElement = $("input[name='" + subtotalName + "']");
-
-            var price = parseFloat( element.val() );
-            var qty = parseFloat( qtyElement.val() );
-
-            if(isNaN(qty ))
-                return;
-            subtotalElement.val((qty * price).toFixed(2));
-
-
-        });
-
-
-        $("body").delegate(".discount, .tax", "keyup",  function (){
+        $("body").delegate(".discount, .tax, .cost", "keyup",  function (){
 
             $(".qty").trigger("keyup");
 
         });
 
-        $("body").delegate(".subtotal", "keyup",  function (){
-            var element = jQuery(this);
-
-
-            var elementName = element.attr("name");
-            var qtyName = elementName.replace('subtotal', 'qty');
-            var priceName = elementName.replace('subtotal', 'cost');
-
-
-            var qtyElement = $("input[name='" + qtyName + "']");
-            var priceElement = $("input[name='" + priceName + "']");
-
-            var subtotal = parseFloat( element.val() );
-            var price = parseFloat( priceElement.val() );
-
-
-            qtyElement.val((subtotal / price).toFixed(2));
-
-
-        });
 
         $("body").delegate(".product", "change", function () {
 
