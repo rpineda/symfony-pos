@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * Product
@@ -399,4 +400,84 @@ class Product
     {
         return $this->upcCode;
     }
+
+    /**
+     *@Assert\Callback
+     */
+
+    public function validateEan(ExecutionContextInterface $context) {
+
+        if ( $this->getEanCode() !== null ) {
+
+            $eanCode = $this->getEanCode();
+
+            if( strlen($eanCode) !== 13 ) {
+                $context->buildViolation('Not a valid EAN-13 code(length)')
+                    ->atPath('eanCode')
+                    ->addViolation();
+                return;
+            }
+
+            $eanCodeRoot = substr($eanCode,0,12);
+
+            $checksum = 0;
+            foreach (str_split(strrev($eanCodeRoot)) as $pos => $val) {
+                $checksum += $val * (3 - 2 * ($pos % 2));
+            }
+            $controlDigit = ((10 - ($checksum % 10)) % 10);
+
+            if($eanCode[12] != $controlDigit){
+                $context->buildViolation('Not a valid EAN-13 code(checksum)')
+                    ->atPath('eanCode')
+                    ->addViolation();
+                return;
+            }
+
+
+        }
+
+
+    }
+}
+
+/*
+function eanValidate (){
+    var code_tag = $("#producto_codigo");
+    var error_block = $('#error_code_ean');
+    var code = code_tag.val();
+    if(code.length === 0) {
+        return;
+    }
+
+    if(code.length !== 13){
+        code_tag.parent().addClass("has-error");
+        error_block.text("El codigo debe tener 13 digitos.");
+        error_block.css("display", "block");
+        return;
+    }
+    var root = code.substring(0,12);
+    var checksum = code.substring(12,13);
+
+    /*console.log(root);
+     console.log(checksum);
+     console.log(ean13_checksum(root));*/
+
+    /*if(checksum !== ean13_checksum(root)){
+        code_tag.parent().addClass("has-error");
+        error_block.text("El codigo no es valido.");
+        error_block.css("display", "block");
+        return;
+    }else{
+        code_tag.parent().removeClass("has-error");
+        $("#error_code_ean").css("display","none");
+    }
+}
+
+function ean13_checksum(message) {
+    var checksum = 0;
+    message = message.split('').reverse();
+    for(var pos in message){
+        checksum += message[pos] * (3 - 2 * (pos % 2));
+    }
+    return String((10 - (checksum % 10 )) % 10);
 }
