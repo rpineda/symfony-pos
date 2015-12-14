@@ -90,7 +90,19 @@ class Product
      */
     private $image;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ean_code", type="string", length=255)
+     */
+    private $eanCode;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="upc_code", type="string", length=255)
+     */
+    private $upcCode;
 
     /**
      * Get id
@@ -338,5 +350,53 @@ class Product
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set eanCode
+     *
+     * @param string $eanCode
+     *
+     * @return Product
+     */
+    public function setEanCode($eanCode)
+    {
+        $this->eanCode = $eanCode;
+
+        return $this;
+    }
+
+    /**
+     * Get eanCode
+     *
+     * @return string
+     */
+    public function getEanCode()
+    {
+        return $this->eanCode;
+    }
+
+    /**
+     * Set upcCode
+     *
+     * @param string $upcCode
+     *
+     * @return Product
+     */
+    public function setUpcCode($upcCode)
+    {
+        $this->upcCode = $upcCode;
+
+        return $this;
+    }
+
+    /**
+     * Get upcCode
+     *
+     * @return string
+     */
+    public function getUpcCode()
+    {
+        return $this->upcCode;
     }
 }
