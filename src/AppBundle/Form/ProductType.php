@@ -33,6 +33,9 @@ class ProductType extends AbstractType
             ->add('price', null, ['label' => 'product.labels.price'])
             ->add('cost', null, ['label' => 'product.labels.cost'])
             ->add('qty', null, ['label' => 'product.labels.qty'])
+            ->add('eanCode', null, ['label' => 'product.labels.eanCode', 'required' => false])
+            ->add('upcCode', null, ['label' => 'product.labels.upcCode', 'required' => false])
+            ->add('deleted', null, ['label' => 'category.labels.deleted'])
             ->add('deleted', null, ['label' => 'category.labels.deleted'])
             ->add('image', "file", [ 'data_class' => null , 'required' => false])
 
