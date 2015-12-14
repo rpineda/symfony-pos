@@ -54,6 +54,33 @@ class ProductController extends Controller
             'entities' => $entities,
         );
     }
+
+    /**
+     * Get product entity by code
+     *
+     * @Route("/code/{code}", name="product_code", options={"expose"=true})
+     * @Method("GET")
+     * @Template()
+     */
+
+    public function codeAction(Request $request, $code) {
+        $em = $this->getDoctrine()->getManager();
+        $entity= $em
+            ->createQuery(
+                'SELECT p '
+                . ' FROM AppBundle:Product p  '
+                . ' WHERE p.eanCode = :code OR p.upcCode = :code  '
+            )
+            ->setParameter('code', $code)
+            ->getOneOrNullResult();
+
+        $serializer = $this->container->get('serializer');
+        $jsonEntity = $serializer->serialize($entity, 'json');
+        $response = new Response();
+        $response->setContent($jsonEntity);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
     /**
      * Creates a new Product entity.
      *
