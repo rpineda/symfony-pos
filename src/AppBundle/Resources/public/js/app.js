@@ -283,6 +283,29 @@ jQuery(document).ready(function () {
     }
 
 
+    $("body").delegate("#codeReader", "change", function (e){
+        var code = $(this).val();
+
+        $.get(Routing.generate('product_code',  { code: code }) , function (data, status) {
+            var product = data;
+            if(product === null){
+                return;
+            }
+            var selects = $(".product");
+            selects.each(function( index ) {
+                if( ! $( this).find("option:selected").attr("value") > 0){
+                    var opt = $(this).find("option[value=" + product.id + "]");
+                    opt.attr("selected", "selected");
+                    $(this).trigger("change");
+                    $("#addItem").trigger("click");
+                }
+            });
+
+        });
+        $(this).val('');
+        $(this).focus();
+    });
+
 
 
 
