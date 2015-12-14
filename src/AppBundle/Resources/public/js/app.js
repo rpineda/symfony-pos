@@ -285,7 +285,7 @@ jQuery(document).ready(function () {
 
     $("body").delegate("#codeReader", "change", function (e){
         var code = $(this).val();
-
+        var loaded = false;
         $.get(Routing.generate('product_code',  { code: code }) , function (data, status) {
             var product = data;
             if(product === null){
@@ -293,11 +293,12 @@ jQuery(document).ready(function () {
             }
             var selects = $(".product");
             selects.each(function( index ) {
-                if( ! $( this).find("option:selected").attr("value") > 0){
+                if( ! loaded && ! $( this).find("option:selected").attr("value") > 0 ){
                     var opt = $(this).find("option[value=" + product.id + "]");
                     opt.attr("selected", "selected");
                     $(this).trigger("change");
                     $("#addItem").trigger("click");
+                    loaded = true;
                 }
             });
 
