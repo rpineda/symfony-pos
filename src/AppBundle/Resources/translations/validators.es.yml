@@ -1,2 +1,5 @@
 Stock is empty: No hay stock
 No enough stock: Stock insuficiente
+
+Not a valid EAN-13 code(length): No es un codigo ean valido(longitud)
+Not a valid EAN-13 code(checksum): No es un codigo ean valido(Digito de control)
