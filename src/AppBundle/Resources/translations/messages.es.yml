@@ -46,6 +46,8 @@ search:
         initDate: inicio
         endDate: fin
         group: Agrupar
+        code: Leer codigo barra
+        codePlaceholder: Haz click aqui y apreta el boton para leer el codigo de barra
 
 app:
     name: POS
@@ -76,6 +78,8 @@ product:
         cost: Costo
         qty:  Cantidad
         deleted:  Borrado
+        eanCode: Codigo EAN
+        upcCode: Codigo UPC
 
 operation:
         labels:

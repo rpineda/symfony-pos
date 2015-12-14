@@ -44,6 +44,9 @@ search:
         initDate: From
         endDate: To
         group: Group
+        code: Read bar code
+        codePlaceholder: Click here and then scan bar code
+
 
 app:
     name: POS
@@ -74,6 +77,8 @@ product:
         cost: Cost
         qty:  Qty
         deleted:  Deleted
+        eanCode: EAN code
+        upcCode: UPC code
 
 operation:
         labels:
