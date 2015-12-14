@@ -9,6 +9,16 @@
     {% endblock %}
 
 
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="codeReader">{{ 'search.labels.code' | trans }}</label>
+                <input type="text" class="form-control" id="codeReader" placeholder="{{ 'search.labels.codePlaceholder' | trans }}">
+            </div>
+
+        </div>
+    </div>
+
     {{ form_start(form) }}
 
 
