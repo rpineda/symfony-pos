@@ -42,14 +42,14 @@ class Product
     /**
      * @var float
      *
-     * @ORM\Column(name="price", type="float")
+     * @ORM\Column(name="price", type="float", nullable=true)
      */
     private $price;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="cost", type="float")
+     * @ORM\Column(name="cost", type="float", nullable=true)
      */
     private $cost;
 
@@ -77,7 +77,7 @@ class Product
     /**
      * @var float
      *
-     * @ORM\Column(name="qty", type="float")
+     * @ORM\Column(name="qty", type="float", nullable=true)
      */
     private $qty;
 
@@ -94,14 +94,14 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="ean_code", type="string", length=255)
+     * @ORM\Column(name="ean_code", type="string", length=255, nullable=true)
      */
     private $eanCode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="upc_code", type="string", length=255)
+     * @ORM\Column(name="upc_code", type="string", length=255, nullable=true)
      */
     private $upcCode;
 
