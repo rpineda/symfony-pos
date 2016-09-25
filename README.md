@@ -17,11 +17,6 @@ Features:
  * Invoices
 
 
-Important:
------------
-*PHP7 not supported
-
-
 
 Install guide:[1](/INSTALL.md "install link")
 ---------------
