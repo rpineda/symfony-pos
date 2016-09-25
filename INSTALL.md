@@ -138,10 +138,3 @@ sudo systemctl reload nginx
 php app/console assetic:dump --env=prod --no-debug
 php app/console assets:install --symlink web
 ```
-
-### Install nodejs from nodesource then type
-```sh
-npm install 
-nodejs ./node_modules/gulp/bin/gulp.js 
-```
-
