@@ -23,5 +23,7 @@ Important:
 
 
 
+Install guide:[1](/INSTALL.md "install link")
+---------------
 
 
