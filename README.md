@@ -19,7 +19,7 @@ Features:
 
 Important:
 -----------
-*It doesn't work on Ubuntu 16.04.(php7). Works fine on Debian Jessie (php5)
+*PHP7 not supported
 
 
 
