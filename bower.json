@@ -1,0 +1,24 @@
+{
+  "name": "symfony-pos",
+  "description": "A point of sale",
+  "main": "gulpfile.js",
+  "authors": [
+    "Felipe Morales"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "pos"
+  ],
+  "homepage": "https://github.com/moralesfelipe/symfony-pos",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "gentelella": "^1.4.0"
+  }
+}
