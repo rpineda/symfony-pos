@@ -1,0 +1,85 @@
+{# base.html.twig #}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>{% block title %} {{ 'Point of sale' | trans }}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <META NAME="ROBOTS" CONTENT="INDEX, NOFOLLOW">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ asset("/assets/vendor/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css") }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset("/assets/vendor/gentelella/vendors/font-awesome/css/font-awesome.min.css") }}"
+          rel="stylesheet">
+    <!-- NProgress -->
+    <link rel="stylesheet" href="{{ asset("/assets/vendor/gentelella/vendors/nprogress/nprogress.css") }}"
+          rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link rel="stylesheet" href="{{ asset("/assets/vendor/gentelella/build/css/custom.min.css") }}" rel="stylesheet">
+
+
+</head>
+
+<body class="login">
+<div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <h1>Login Form</h1>
+
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="flash-{{ type }} alert alert-warning" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+
+                {% block fos_user_content %} {% endblock fos_user_content %}
+
+
+            </section>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+
+
+<!-- jQuery -->
+<script src="{{ asset("/assets/vendor/gentelella/vendors/jquery/dist/jquery.min.js") }}"></script>
+<!-- Bootstrap -->
+<script src="{{ asset("/assets/vendor/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js") }}"></script>
+<!-- FastClick -->
+<script src="{{ asset("/assets/vendor/gentelella/vendors/fastclick/lib/fastclick.js") }}"></script>
+<!-- NProgress -->
+<script src="{{ asset("/assets/vendor/gentelella/vendors/nprogress/nprogress.js") }}"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="{{ asset("/assets/vendor/gentelella/build/js/custom.min.js") }}"></script>
+
+
+</body>
+</html>
